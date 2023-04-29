@@ -11,6 +11,12 @@ const Home = () => {
    const [products, setProducts] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
 
+   // State for Category component
+   const [categoryId, setCategoryId] = useState(0);
+
+   // State for Sort component
+   const [sortId, setSortId] = useState(0);
+
    useEffect(() => {
       fetch(baseAPI)
          .then((res) => res.json())
@@ -23,8 +29,8 @@ const Home = () => {
    return (
       <>
          <div className="content__top">
-            <Categories />
-            <Sort />
+            <Categories categoryId={categoryId} setCategoryId={(id) => setCategoryId(id)} />
+            <Sort sortId={sortId} setSortId={(id) => setSortId(id)} />
          </div>
          <h2 className="content__title">All products</h2>
          <div className="content__items">

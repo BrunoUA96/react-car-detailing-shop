@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-const Sort = () => {
+const Sort = ({ sortId, setSortId }) => {
    const [isVisible, setIsVisible] = useState(false);
-   const [activeIndex, setActiveIndex] = useState(0);
 
    const listSortItems = ['popular', 'price', 'alphabet'];
 
@@ -22,17 +21,17 @@ const Sort = () => {
                />
             </svg>
             <b>Sort by:</b>
-            <span onClick={() => setIsVisible(!isVisible)}>{listSortItems[activeIndex]}</span>
+            <span onClick={() => setIsVisible(!isVisible)}>{listSortItems[sortId]}</span>
          </div>
          {isVisible && (
             <div className="sort__popup">
                <ul>
-                  {listSortItems.map((sortItem, index) => (
+                  {listSortItems.map((sortName, index) => (
                      <li
                         key={index}
-                        onClick={() => (setActiveIndex(index), setIsVisible(!isVisible))}
-                        className={activeIndex == index ? 'active' : ''}>
-                        {sortItem}
+                        onClick={() => (setSortId(index), setIsVisible(!isVisible))}
+                        className={sortId == index ? 'active' : ''}>
+                        {sortName}
                      </li>
                   ))}
                </ul>
