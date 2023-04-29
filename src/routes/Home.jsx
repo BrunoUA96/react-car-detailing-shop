@@ -44,7 +44,7 @@ const Home = () => {
 
       const sortFilter = `_sort=${typeOfSort}&_order=${ascDescSort}`;
 
-      const pageFilter = `&_page=${page}`;
+      const pageFilter = `&_page=${page}&_limit=12`;
 
       try {
          axios
@@ -60,7 +60,7 @@ const Home = () => {
                axios.spread((items, pagination) => {
                   // output of req.
                   setProducts(items.data);
-                  setPaginationCount(Math.round(pagination.data.length / 10));
+                  setPaginationCount(Math.ceil(pagination.data.length / 12));
 
                   setIsLoading(false);
                }),
@@ -92,17 +92,8 @@ const Home = () => {
                   className={page != 1 ? 'active' : 'cursor-none'}
                   onClick={page != 1 ? () => setPage(page - 1) : null}>
                   <span>
-                     <svg
-                        viewBox="-4.5 0 20 20"
-                        version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g
-                           id="Page-1"
-                           stroke="none"
-                           stroke-width="1"
-                           fill="none"
-                           fill-rule="evenodd">
+                     <svg viewBox="-4.5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                            <g
                               id="Dribbble-Light-Preview"
                               transform="translate(-345.000000, -6679.000000)"
@@ -136,14 +127,8 @@ const Home = () => {
                         height="800px"
                         viewBox="-4.5 0 20 20"
                         version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g
-                           id="Page-1"
-                           stroke="none"
-                           stroke-width="1"
-                           fill="none"
-                           fill-rule="evenodd">
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                            <g
                               id="Dribbble-Light-Preview"
                               transform="translate(-305.000000, -6679.000000)"
