@@ -48,6 +48,43 @@ body {
       }
    }
 
+   &__pagination {
+      display: flex;
+      justify-content: center;
+
+      li {
+         background-color: #f9f9f9;
+         margin: 0 5px;
+         padding: 5px 13px;
+         border-radius: 5px;
+         cursor: pointer;
+
+         &.cursor-none {
+            cursor: no-drop;
+         }
+
+         &.active {
+            background-color: $orange;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+
+            &:hover {
+               background-color: darken($orange, 8%);
+            }
+
+            &:active {
+               background-color: darken($orange, 12%);
+               transform: translateY(1px);
+            }
+
+            span {
+               color: inherit;
+            }
+         }
+      }
+   }
+
    &__top {
       display: flex;
       align-items: center;
