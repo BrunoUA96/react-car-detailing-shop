@@ -39,7 +39,7 @@ const CarPartBlock = ({ title, price, subCategory, imageProguct, quantity, size 
          )}
 
          <div className="car-parts-block__bottom">
-            <div className="car-parts-block__price">{price}</div>
+            <div className="car-parts-block__price">${price}</div>
             <button className="button button--outline button--add">
                <svg
                   width="12"
