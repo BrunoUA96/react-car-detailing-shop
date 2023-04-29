@@ -3,7 +3,7 @@ import { useState } from 'react';
 const Sort = ({ sortId, setSortId }) => {
    const [isVisible, setIsVisible] = useState(false);
 
-   const listSortItems = ['popular', 'price', 'alphabet'];
+   const listSortItems = ['price (low)', 'price (high)', 'alphabet (a-z)', 'alphabet (z-a)'];
 
    return (
       <div className="sort">
