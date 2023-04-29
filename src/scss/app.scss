@@ -51,6 +51,12 @@ body {
    &__pagination {
       display: flex;
       justify-content: center;
+      :first-child,
+      :last-child {
+         padding: 5px;
+         li {
+         }
+      }
 
       li {
          background-color: #f9f9f9;
@@ -58,9 +64,21 @@ body {
          padding: 5px 13px;
          border-radius: 5px;
          cursor: pointer;
+         display: flex;
+         align-items: center;
+         justify-content: center;
 
          &.cursor-none {
             cursor: no-drop;
+         }
+
+         span {
+            line-height: 0;
+
+            svg {
+               width: 20px;
+               height: 20px;
+            }
          }
 
          &.active {
@@ -80,6 +98,12 @@ body {
 
             span {
                color: inherit;
+
+               svg {
+                  g {
+                     fill: white;
+                  }
+               }
             }
          }
       }
