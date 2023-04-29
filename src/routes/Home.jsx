@@ -7,9 +7,6 @@ import Skeleton from '../components/ProductCard/Skeleton';
 
 import axios from 'axios';
 
-import arrowLeft from '../assets/arrow-left.svg';
-import arrowRight from '../assets/arrow-right.svg';
-
 const Home = () => {
    const baseAPI = 'http://localhost:3000/products';
 
