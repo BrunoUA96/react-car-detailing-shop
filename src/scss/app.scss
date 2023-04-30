@@ -31,7 +31,7 @@ body {
    &__items {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-rows: repeat(1, 1fr);
       grid-column-gap: 46.66666px;
       grid-row-gap: 0;
 
@@ -54,8 +54,6 @@ body {
       :first-child,
       :last-child {
          padding: 5px;
-         li {
-         }
       }
 
       li {
