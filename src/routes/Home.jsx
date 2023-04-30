@@ -16,12 +16,21 @@ const Home = () => {
    // State for Category component
    const [categoryId, setCategoryId] = useState(0);
 
+   // List Sort Options
+   const sortOptions = [
+      { id: 0, title: 'price (low)', property: 'price', orderBy: 'asc' },
+      { id: 1, title: 'price (high)', property: 'price', orderBy: 'desc' },
+      { id: 2, title: 'alphabet (a-z)', property: 'title', orderBy: 'asc' },
+      { id: 3, title: 'alphabet (z-a)', property: 'title', orderBy: 'desc' },
+   ];
+
    // State for Sort component
-   const [sortId, setSortId] = useState(0);
+   const [sortItem, setSortItem] = useState(sortOptions[0]);
 
    // Pagination state
    const [page, setPage] = useState(1);
 
+   // Use to calculate number of pages
    const [paginationCount, setPaginationCount] = useState(1);
 
    // Im use these two functions (changeCategory,changeSort) to reset pagination
@@ -31,35 +40,35 @@ const Home = () => {
       if (categoryId != id) setPage(1);
    }
 
-   function changeSort(id) {
-      setSortId(id);
-      if (sortId != id) setPage(1);
+   function changeSort(obj) {
+      setSortItem(obj);
+      if (sortItem != obj) setPage(1);
    }
 
    useEffect(() => {
-      const categoryFirter = categoryId ? `category=${categoryId}` : '';
-
-      const typeOfSort = sortId < 2 ? 'price' : 'title';
-      const ascDescSort = sortId == 0 || sortId == 2 ? 'asc' : 'desc';
-
-      const sortFilter = `_sort=${typeOfSort}&_order=${ascDescSort}`;
-
-      const pageFilter = `&_page=${page}&_limit=12`;
+      const params = {
+         // if category 'All products' is selected, i dont need param 'category' in params
+         ...(categoryId && { category: categoryId }),
+         _sort: sortItem.property,
+         _order: sortItem.orderBy,
+         _page: page,
+         // _limit has static number, thus i limit number of items per page
+         _limit: '12',
+      };
 
       try {
+         setIsLoading(true);
+
          axios
             .all([
-               axios.get(
-                  `${baseAPI}?${
-                     categoryFirter ? categoryFirter + '&' : ''
-                  }${sortFilter}${pageFilter}`,
-               ),
-               axios.get(`${baseAPI}?${categoryFirter ? categoryFirter + '&' : ''}${sortFilter}`),
+               axios.get(baseAPI, { params: { ...params } }),
+               axios.get(baseAPI, { params: { category: params.category } }),
             ])
             .then(
                axios.spread((items, pagination) => {
                   // output of req.
                   setProducts(items.data);
+                  // Count number of pages
                   setPaginationCount(Math.ceil(pagination.data.length / 12));
 
                   setIsLoading(false);
@@ -69,14 +78,18 @@ const Home = () => {
          setIsLoading(true);
          console.error(error);
       }
-   }, [categoryId, sortId, page]);
+   }, [categoryId, sortItem, page]);
 
    return (
       <>
          {/* Categories & Sort */}
          <div className="content__top">
             <Categories categoryId={categoryId} setCategoryId={(id) => changeCategory(id)} />
-            <Sort sortId={sortId} setSortId={(id) => changeSort(id)} />
+            <Sort
+               sortItem={sortItem}
+               setSortItem={(obj) => changeSort(obj)}
+               sortOptions={sortOptions}
+            />
          </div>
          <h2 className="content__title">All products</h2>
          {/* Product List */}
