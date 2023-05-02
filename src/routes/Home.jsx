@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -7,10 +7,9 @@ import Skeleton from '../components/ProductCard/Skeleton';
 import Pagination from '../components/Pagination';
 
 import axios from 'axios';
+import { SearchContext } from '../App';
 
-const Home = ({ searchValue }) => {
-   const baseAPI = 'http://localhost:3000/products';
-
+const Home = () => {
    const [products, setProducts] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
 
@@ -34,6 +33,8 @@ const Home = ({ searchValue }) => {
    // Pagination state
    const [page, setPage] = useState(1);
 
+   const { searchValue } = useContext(SearchContext);
+
    // Im use these two functions (changeCategory,changeSort) to reset pagination
    // If (Category || Sort) has been changet
    function changeCategory(id) {
@@ -46,6 +47,7 @@ const Home = ({ searchValue }) => {
       if (sortItem != obj) setPage(1);
    }
 
+   const baseAPI = 'http://localhost:3000/products';
    useEffect(() => {
       const params = {
          // if category 'All products' is selected, i dont need param 'category' in params
