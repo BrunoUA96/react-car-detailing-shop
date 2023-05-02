@@ -8,7 +8,7 @@ import Pagination from '../components/Pagination';
 
 import axios from 'axios';
 
-const Home = () => {
+const Home = ({ searchValue }) => {
    const baseAPI = 'http://localhost:3000/products';
 
    const [products, setProducts] = useState([]);
@@ -28,11 +28,11 @@ const Home = () => {
    // State for Sort component
    const [sortItem, setSortItem] = useState(sortOptions[0]);
 
-   // Pagination state
-   const [page, setPage] = useState(1);
-
    // Use to calculate number of pages
    const [paginationCount, setPaginationCount] = useState(1);
+
+   // Pagination state
+   const [page, setPage] = useState(1);
 
    // Im use these two functions (changeCategory,changeSort) to reset pagination
    // If (Category || Sort) has been changet
@@ -55,6 +55,7 @@ const Home = () => {
          _page: page,
          // _limit has static number, thus i limit number of items per page
          _limit: '12',
+         ...(searchValue && { q: searchValue }),
       };
 
       try {
@@ -63,7 +64,9 @@ const Home = () => {
          axios
             .all([
                axios.get(baseAPI, { params: { ...params } }),
-               axios.get(baseAPI, { params: { category: params.category } }),
+               axios.get(baseAPI, {
+                  params: { category: params.category, q: params.q },
+               }),
             ])
             .then(
                axios.spread((items, pagination) => {
@@ -79,7 +82,7 @@ const Home = () => {
          setIsLoading(true);
          console.error(error);
       }
-   }, [categoryId, sortItem, page]);
+   }, [categoryId, sortItem, page, searchValue]);
 
    return (
       <>
