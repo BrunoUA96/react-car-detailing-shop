@@ -1,8 +1,10 @@
+import styles from './Pagination.module.scss';
+
 const Pagination = ({ page, setPage, paginationCount }) => {
    return (
-      <ul className="content__pagination">
+      <ul className={styles.root}>
          <li
-            className={page != 1 ? 'active' : 'cursor-none'}
+            className={page != 1 ? styles.active : styles.cursorNone}
             onClick={page != 1 ? () => setPage(page - 1) : null}>
             <span>
                <svg viewBox="-4.5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +26,7 @@ const Pagination = ({ page, setPage, paginationCount }) => {
 
          {[...new Array(paginationCount)].map((_, index) => (
             <li
-               className={page === index + 1 ? 'active  cursor-none' : ''}
+               className={page === index + 1 ? [`${styles.active} ${styles.cursorNone}`] : ''}
                key={index}
                onClick={() => setPage(index)}>
                <span>{++index}</span>
@@ -32,7 +34,7 @@ const Pagination = ({ page, setPage, paginationCount }) => {
          ))}
 
          <li
-            className={page != paginationCount ? 'active' : 'cursor-none'}
+            className={page != paginationCount ? styles.active : styles.cursorNone}
             onClick={page != paginationCount ? () => setPage(page + 1) : null}>
             <span>
                <svg
