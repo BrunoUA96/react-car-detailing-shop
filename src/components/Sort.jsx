@@ -1,8 +1,15 @@
 import { useState } from 'react';
 
-const Sort = ({ sortItem, setSortItem, sortOptions }) => {
-   const [isVisible, setIsVisible] = useState(false);
+const Sort = ({ sortItem, setSortItem }) => {
+   // List Sort Options
+   const sortOptions = [
+      { id: 0, title: 'price (low)', property: 'price', orderBy: 'asc' },
+      { id: 1, title: 'price (high)', property: 'price', orderBy: 'desc' },
+      { id: 2, title: 'alphabet (a-z)', property: 'title', orderBy: 'asc' },
+      { id: 3, title: 'alphabet (z-a)', property: 'title', orderBy: 'desc' },
+   ];
 
+   const [isVisible, setIsVisible] = useState(false);
    return (
       <div className="sort">
          <div className="sort__label">
@@ -27,9 +34,7 @@ const Sort = ({ sortItem, setSortItem, sortOptions }) => {
                   {sortOptions.map((obj, index) => (
                      <li
                         key={index}
-                        onClick={() => (
-                           setSortItem(obj), console.log('click', obj), setIsVisible(!isVisible)
-                        )}
+                        onClick={() => (setSortItem(obj), setIsVisible(!isVisible))}
                         className={sortItem.id == obj.id ? 'active' : ''}>
                         {obj.title}
                      </li>

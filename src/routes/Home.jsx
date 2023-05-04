@@ -8,24 +8,19 @@ import Pagination from '../components/Pagination';
 
 import axios from 'axios';
 import { SearchContext } from '../App';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategoryId, setSortItem } from '../redux/slices/fiterSlice';
 
 const Home = () => {
+   const dispatch = useDispatch();
+   // State for Category
+   const categoryId = useSelector((state) => state.filters.category);
+
+   // State for SortBy
+   const sortItem = useSelector((state) => state.filters.sortItem);
+
    const [products, setProducts] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
-
-   // State for Category component
-   const [categoryId, setCategoryId] = useState(0);
-
-   // List Sort Options
-   const sortOptions = [
-      { id: 0, title: 'price (low)', property: 'price', orderBy: 'asc' },
-      { id: 1, title: 'price (high)', property: 'price', orderBy: 'desc' },
-      { id: 2, title: 'alphabet (a-z)', property: 'title', orderBy: 'asc' },
-      { id: 3, title: 'alphabet (z-a)', property: 'title', orderBy: 'desc' },
-   ];
-
-   // State for Sort component
-   const [sortItem, setSortItem] = useState(sortOptions[0]);
 
    // Use to calculate number of pages
    const [paginationCount, setPaginationCount] = useState(1);
@@ -38,12 +33,12 @@ const Home = () => {
    // Im use these two functions (changeCategory,changeSort) to reset pagination
    // If (Category || Sort) has been changet
    function changeCategory(id) {
-      setCategoryId(id);
+      dispatch(setCategoryId(id));
       if (categoryId != id) setPage(1);
    }
 
    function changeSort(obj) {
-      setSortItem(obj);
+      dispatch(setSortItem(obj));
       if (sortItem != obj) setPage(1);
    }
 
@@ -91,11 +86,7 @@ const Home = () => {
          {/* Categories & Sort */}
          <div className="content__top">
             <Categories categoryId={categoryId} setCategoryId={(id) => changeCategory(id)} />
-            <Sort
-               sortItem={sortItem}
-               setSortItem={(obj) => changeSort(obj)}
-               sortOptions={sortOptions}
-            />
+            <Sort sortItem={sortItem} setSortItem={(obj) => changeSort(obj)} />
          </div>
          <h2 className="content__title">All products</h2>
          {/* Product List */}
