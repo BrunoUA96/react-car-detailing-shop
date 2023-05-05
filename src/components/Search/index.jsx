@@ -2,21 +2,26 @@ import { useCallback, useContext, useRef, useState } from 'react';
 import styles from './Search.module.scss';
 import { SearchContext } from '../../App';
 import debounce from 'lodash.debounce';
+import { useDispatch } from 'react-redux';
+import { setIsLoading } from '../../redux/slices/loadingSlice';
 
 const Search = () => {
+   const dispach = useDispatch();
+
    const { searchValue, setSearchValue } = useContext(SearchContext);
    const [localSearchValue, setLocalSerchValue] = useState('');
 
    const debounceValue = useCallback(
       debounce((str) => {
          setSearchValue(str);
-         console.log('callback', str);
-      }, 1000),
+         dispach(setIsLoading(false));
+      }, 500),
       [],
    );
 
    const onChangeValue = (event) => {
       setLocalSerchValue(event.target.value);
+      dispach(setIsLoading(true));
       debounceValue(event.target.value);
    };
 

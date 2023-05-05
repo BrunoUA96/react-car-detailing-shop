@@ -10,17 +10,21 @@ import axios from 'axios';
 import { SearchContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setSortItem } from '../redux/slices/fiterSlice';
+import { setIsLoading } from '../redux/slices/loadingSlice';
 
 const Home = () => {
    const dispatch = useDispatch();
    // State for Category
    const categoryId = useSelector((state) => state.filters.category);
+   const isLoading = useSelector((state) => state.loading.isLoading);
+
+   console.log(isLoading);
 
    // State for SortBy
    const sortItem = useSelector((state) => state.filters.sortItem);
 
    const [products, setProducts] = useState([]);
-   const [isLoading, setIsLoading] = useState(true);
+   // const [isLoading, setIsLoading] = useState(true);
 
    // Use to calculate number of pages
    const [paginationCount, setPaginationCount] = useState(1);
@@ -56,7 +60,7 @@ const Home = () => {
       };
 
       try {
-         setIsLoading(true);
+         dispatch(setIsLoading(true));
 
          axios
             .all([
@@ -72,11 +76,11 @@ const Home = () => {
                   // Count number of pages
                   setPaginationCount(Math.ceil(pagination.data.length / 12));
 
-                  setIsLoading(false);
+                  dispatch(setIsLoading(false));
                }),
             );
       } catch (error) {
-         setIsLoading(true);
+         dispatch(setIsLoading(true));
          console.error(error);
       }
    }, [categoryId, sortItem, page, searchValue]);
