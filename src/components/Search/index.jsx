@@ -1,14 +1,31 @@
-import { useContext, useRef } from 'react';
+import { useCallback, useContext, useRef, useState } from 'react';
 import styles from './Search.module.scss';
 import { SearchContext } from '../../App';
+import debounce from 'lodash.debounce';
 
 const Search = () => {
    const { searchValue, setSearchValue } = useContext(SearchContext);
+   const [localSearchValue, setLocalSerchValue] = useState('');
 
+   const debounceValue = useCallback(
+      debounce((str) => {
+         setSearchValue(str);
+         console.log('callback', str);
+      }, 1000),
+      [],
+   );
+
+   const onChangeValue = (event) => {
+      setLocalSerchValue(event.target.value);
+      debounceValue(event.target.value);
+   };
+
+   // Get ref to inputin order to put focused on clean
    const searchInputRef = useRef(null);
 
    const resetInput = () => {
       setSearchValue('');
+      setLocalSerchValue('');
       searchInputRef.current.focus();
    };
 
@@ -49,14 +66,14 @@ const Search = () => {
          </svg>
          <input
             ref={searchInputRef}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+            value={localSearchValue}
+            onChange={onChangeValue}
             className={styles.input}
             type="text"
             name="search"
             placeholder="Search..."
          />
-         {searchValue && (
+         {localSearchValue && (
             <span onClick={resetInput}>
                <svg
                   className={styles.closeIcon}
