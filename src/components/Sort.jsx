@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-const Sort = ({ sortItem, setSortItem }) => {
-   // List Sort Options
-   const sortOptions = [
-      { id: 0, title: 'price (low)', property: 'price', orderBy: 'asc' },
-      { id: 1, title: 'price (high)', property: 'price', orderBy: 'desc' },
-      { id: 2, title: 'alphabet (a-z)', property: 'title', orderBy: 'asc' },
-      { id: 3, title: 'alphabet (z-a)', property: 'title', orderBy: 'desc' },
-   ];
+// List Sort Options
+export const sortOptions = [
+   { id: 0, title: 'price (low)', property: 'price', orderBy: 'asc' },
+   { id: 1, title: 'price (high)', property: 'price', orderBy: 'desc' },
+   { id: 2, title: 'alphabet (a-z)', property: 'title', orderBy: 'asc' },
+   { id: 3, title: 'alphabet (z-a)', property: 'title', orderBy: 'desc' },
+];
 
+const Sort = ({ sortItem, setSortItem }) => {
    const [isVisible, setIsVisible] = useState(false);
    return (
       <div className="sort">

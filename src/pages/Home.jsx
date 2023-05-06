@@ -9,16 +9,20 @@ import Pagination from '../components/Pagination';
 import axios from 'axios';
 import { SearchContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategoryId, setSortItem } from '../redux/slices/fiterSlice';
+import { setCategoryId, setFilters, setSortItem } from '../redux/slices/fitersSlice';
 import { setIsLoading } from '../redux/slices/loadingSlice';
-import { setCurrentPage, setPaginationCount } from '../redux/slices/paginationSlice';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+import { setCurrentPage, setPaginationCount } from '../redux/slices/fitersSlice';
+import { sortOptions } from '../components/Sort';
 
 const Home = () => {
+   const navigate = useNavigate();
    const dispatch = useDispatch();
    // State for Category
    const categoryId = useSelector((state) => state.filters.category);
    const isLoading = useSelector((state) => state.loading.isLoading);
-   const currentPage = useSelector((state) => state.pagination.currentPage);
+   const currentPage = useSelector((state) => state.filters.pagination.currentPage);
 
    // State for SortBy
    const sortItem = useSelector((state) => state.filters.sortItem);
@@ -39,8 +43,22 @@ const Home = () => {
       if (sortItem != obj) dispatch(setCurrentPage(1));
    }
 
+   useEffect(() => {
+      if (window.location.search) {
+         const params = qs.parse(window.location.search, { ignoreQueryPrefix: true });
+
+         // To find selected sort obj in the sortOptions list
+         const sortObj = sortOptions.find(
+            (obj) => obj.property == params._sort && obj.orderBy == params._order,
+         );
+
+         dispatch(setFilters({ ...params, sortObj }));
+      }
+   }, []);
+
    const baseAPI = 'http://localhost:3000/products';
    useEffect(() => {
+      window.scrollTo(0, 0);
       const params = {
          // if category 'All products' is selected, i dont need param 'category' in params
          ...(categoryId && { category: categoryId }),
@@ -51,6 +69,10 @@ const Home = () => {
          _limit: '12',
          ...(searchValue && { q: searchValue }),
       };
+
+      const queryParams = qs.stringify({ ...params }, { addQueryPrefix: true });
+
+      navigate(queryParams);
 
       try {
          dispatch(setIsLoading(true));
