@@ -11,26 +11,19 @@ import { SearchContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setSortItem } from '../redux/slices/fiterSlice';
 import { setIsLoading } from '../redux/slices/loadingSlice';
+import { setCurrentPage, setPaginationCount } from '../redux/slices/paginationSlice';
 
 const Home = () => {
    const dispatch = useDispatch();
    // State for Category
    const categoryId = useSelector((state) => state.filters.category);
    const isLoading = useSelector((state) => state.loading.isLoading);
-
-   console.log(isLoading);
+   const currentPage = useSelector((state) => state.pagination.currentPage);
 
    // State for SortBy
    const sortItem = useSelector((state) => state.filters.sortItem);
 
    const [products, setProducts] = useState([]);
-   // const [isLoading, setIsLoading] = useState(true);
-
-   // Use to calculate number of pages
-   const [paginationCount, setPaginationCount] = useState(1);
-
-   // Pagination state
-   const [page, setPage] = useState(1);
 
    const { searchValue } = useContext(SearchContext);
 
@@ -38,12 +31,12 @@ const Home = () => {
    // If (Category || Sort) has been changet
    function changeCategory(id) {
       dispatch(setCategoryId(id));
-      if (categoryId != id) setPage(1);
+      if (categoryId != id) dispatch(setCurrentPage(1));
    }
 
    function changeSort(obj) {
       dispatch(setSortItem(obj));
-      if (sortItem != obj) setPage(1);
+      if (sortItem != obj) dispatch(setCurrentPage(1));
    }
 
    const baseAPI = 'http://localhost:3000/products';
@@ -53,7 +46,7 @@ const Home = () => {
          ...(categoryId && { category: categoryId }),
          _sort: sortItem.property,
          _order: sortItem.orderBy,
-         _page: page,
+         _page: currentPage,
          // _limit has static number, thus i limit number of items per page
          _limit: '12',
          ...(searchValue && { q: searchValue }),
@@ -74,7 +67,7 @@ const Home = () => {
                   // output of req.
                   setProducts(items.data);
                   // Count number of pages
-                  setPaginationCount(Math.ceil(pagination.data.length / 12));
+                  dispatch(setPaginationCount(Math.ceil(pagination.data.length / 12)));
 
                   dispatch(setIsLoading(false));
                }),
@@ -83,7 +76,7 @@ const Home = () => {
          dispatch(setIsLoading(true));
          console.error(error);
       }
-   }, [categoryId, sortItem, page, searchValue]);
+   }, [categoryId, sortItem, currentPage, searchValue]);
 
    return (
       <>
@@ -100,13 +93,7 @@ const Home = () => {
                : products.map((obj, index) => <ProductCard key={index + obj.title} {...obj} />)}
          </div>
          {/* Pagination */}
-         {paginationCount > 1 && (
-            <Pagination
-               page={page}
-               setPage={(pageNum) => setPage(pageNum)}
-               paginationCount={paginationCount}
-            />
-         )}
+         <Pagination />
       </>
    );
 };
