@@ -21,8 +21,8 @@ export const filterSlice = createSlice({
       setFilters: (state, action) => {
          const { category, _limit, _page, sortObj } = action.payload;
 
-         category ? (state.category = action.payload.category) : '';
-         state.pagination.itemsPerPage = _limit;
+         category && (state.category = action.payload.category);
+         _limit && (state.pagination.itemsPerPage = _limit);
          state.pagination.currentPage = Number(_page);
          state.sortItem = sortObj;
       },

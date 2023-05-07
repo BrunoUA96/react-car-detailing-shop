@@ -21,9 +21,36 @@ const Pagination = () => {
       dispatch(setCurrentPage(1));
    };
 
+   // Custom styles Selector
+   const colourStyles = {
+      control: (styles, { isFocused }) => {
+         return {
+            ...styles,
+            backgroundColor: 'white',
+            ...(isFocused && { borderColor: '#fe5f1e' }),
+            ...(isFocused && { boxShadow: ' 0 0 0 1 #fe5f1e' }),
+            ':hover': {
+               borderColor: '#fe5f1e',
+            },
+         };
+      },
+
+      option: (styles, { isFocused, isSelected }) => {
+         return {
+            ...styles,
+            backgroundColor: isSelected ? '#fe5f1e' : isFocused ? '#fe5f1e82' : 'white',
+            color: isSelected ? 'white' : isFocused ? 'white' : '#fe5f1e',
+            cursor: isFocused && 'pointer',
+            ':active': {
+               backgroundColor: isFocused ? '#fe5f1e' : 'white',
+            },
+         };
+      },
+   };
+
    return (
-      <>
-         <div className={styles.root}>
+      <div className={styles.root}>
+         <div className={styles.paginationContent}>
             <div className={styles.select}>
                <span className={styles.selectTitle}>Items per page:</span>
                <Select
@@ -31,6 +58,7 @@ const Pagination = () => {
                   options={options}
                   defaultValue={options.find((obj) => obj.value == itemsPerPage)}
                   onChange={onSelectItemsPerPage}
+                  styles={colourStyles}
                />
             </div>
             {paginationCount > 1 && (
@@ -116,7 +144,7 @@ const Pagination = () => {
                </ul>
             )}
          </div>
-      </>
+      </div>
    );
 };
 

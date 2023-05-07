@@ -77,7 +77,7 @@ const Home = () => {
             ...(pagination.itemsPerPage != 'all' && { _page: pagination.currentPage }),
             // _limit has static number, thus i limit number of items per page
             ...(pagination.itemsPerPage != 'all' && { _limit: pagination.itemsPerPage }),
-            ...(searchValue && { q: searchValue }),
+            ...(searchValue && { title_like: searchValue }),
          };
 
          const queryParams = qs.stringify({ ...params }, { addQueryPrefix: true });
@@ -86,7 +86,7 @@ const Home = () => {
       }
 
       isMounted.current = true;
-   }, [categoryId, sortItem, pagination.currentPage, searchValue]);
+   }, [categoryId, sortItem, pagination.currentPage, pagination.itemsPerPage, searchValue]);
 
    useEffect(() => {
       window.scrollTo(0, 0);
@@ -111,7 +111,7 @@ const Home = () => {
             ...(pagination.itemsPerPage != 'all' && { _page: pagination.currentPage }),
             // _limit has static number, thus i limit number of items per page
             ...(pagination.itemsPerPage != 'all' && { _limit: pagination.itemsPerPage }),
-            ...(searchValue && { q: searchValue }),
+            ...(searchValue && { title_like: searchValue }),
          };
 
          // First get to items per page
@@ -120,7 +120,7 @@ const Home = () => {
             .all([
                axios.get(baseAPI, { params: { ...params } }),
                axios.get(baseAPI, {
-                  params: { category: params.category, q: params.q },
+                  params: { category: params.category, title_like: params.title_like },
                }),
             ])
             .then(

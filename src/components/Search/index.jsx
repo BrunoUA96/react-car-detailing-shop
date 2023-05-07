@@ -4,6 +4,7 @@ import { SearchContext } from '../../App';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 import { setIsLoading } from '../../redux/slices/loadingSlice';
+import { setCurrentPage } from '../../redux/slices/fitersSlice';
 
 const Search = () => {
    const dispach = useDispatch();
@@ -14,6 +15,7 @@ const Search = () => {
    const debounceValue = useCallback(
       debounce((str) => {
          setSearchValue(str);
+         dispach(setCurrentPage(1));
          dispach(setIsLoading(false));
       }, 500),
       [],
@@ -21,6 +23,7 @@ const Search = () => {
 
    const onChangeValue = (event) => {
       setLocalSerchValue(event.target.value);
+
       dispach(setIsLoading(true));
       debounceValue(event.target.value);
    };
@@ -31,6 +34,7 @@ const Search = () => {
    const resetInput = () => {
       setSearchValue('');
       setLocalSerchValue('');
+      dispach(setCurrentPage(1));
       searchInputRef.current.focus();
    };
 
