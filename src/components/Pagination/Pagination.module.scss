@@ -1,56 +1,76 @@
 @import '../../scss/variables';
 .root {
-   display: flex;
-   justify-content: center;
-   :first-child,
-   :last-child {
-      padding: 5px;
+   position: relative;
+
+   .selectTitle {
+      position: absolute;
+      top: -30px;
+      display: flex;
+      width: 115px;
    }
 
-   li {
-      background-color: #f9f9f9;
-      margin: 0 5px;
-      padding: 5px 13px;
-      border-radius: 5px;
-      cursor: pointer;
+   .select {
       display: flex;
       align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+   }
+
+   .pagination {
+      display: flex;
       justify-content: center;
-
-      &.cursorNone {
-         cursor: no-drop;
+      :first-child,
+      :last-child {
+         padding: 5px;
       }
 
-      span {
-         line-height: 0;
+      li {
+         background-color: #f9f9f9;
+         margin: 0 5px;
+         padding: 5px 13px;
+         border-radius: 5px;
+         cursor: pointer;
+         display: flex;
+         align-items: center;
+         justify-content: center;
 
-         svg {
-            width: 20px;
-            height: 20px;
-         }
-      }
-
-      &.active {
-         background-color: $orange;
-         color: #fff;
-         font-weight: 600;
-         font-size: 16px;
-
-         &:hover {
-            background-color: darken($orange, 8%);
-         }
-
-         &:active {
-            background-color: darken($orange, 12%);
-            transform: translateY(1px);
+         &.cursorNone {
+            cursor: no-drop;
          }
 
          span {
-            color: inherit;
+            line-height: 0;
 
             svg {
-               g {
-                  fill: white;
+               width: 20px;
+               height: 20px;
+            }
+         }
+
+         &.active {
+            background-color: $orange;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+
+            &:hover {
+               background-color: darken($orange, 8%);
+            }
+
+            &:active {
+               background-color: darken($orange, 12%);
+               transform: translateY(1px);
+            }
+
+            span {
+               color: inherit;
+
+               svg {
+                  g {
+                     fill: white;
+                  }
                }
             }
          }

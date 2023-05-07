@@ -33,8 +33,6 @@ const Home = () => {
    // Pagination state
    const pagination = useSelector((state) => state.filters.pagination);
 
-   console.log('pagp', pagination.itemsPerPage);
-
    const [products, setProducts] = useState([]);
 
    const { searchValue } = useContext(SearchContext);
@@ -76,15 +74,13 @@ const Home = () => {
             ...(categoryId && { category: categoryId }),
             _sort: sortItem.property,
             _order: sortItem.orderBy,
-            _page: pagination.currentPage,
+            ...(pagination.itemsPerPage != 'all' && { _page: pagination.currentPage }),
             // _limit has static number, thus i limit number of items per page
-            _limit: pagination.itemsPerPage,
+            ...(pagination.itemsPerPage != 'all' && { _limit: pagination.itemsPerPage }),
             ...(searchValue && { q: searchValue }),
          };
 
          const queryParams = qs.stringify({ ...params }, { addQueryPrefix: true });
-
-         console.log('queryParams', queryParams);
 
          navigate(queryParams);
       }
@@ -100,7 +96,7 @@ const Home = () => {
       }
 
       initialParams.current = false;
-   }, [categoryId, sortItem, pagination.currentPage, searchValue]);
+   }, [categoryId, sortItem, pagination.currentPage, pagination.itemsPerPage, searchValue]);
 
    const fetchItems = () => {
       try {
@@ -112,12 +108,12 @@ const Home = () => {
             ...(categoryId && { category: categoryId }),
             _sort: sortItem.property,
             _order: sortItem.orderBy,
-            _page: pagination.currentPage,
+            ...(pagination.itemsPerPage != 'all' && { _page: pagination.currentPage }),
             // _limit has static number, thus i limit number of items per page
-            _limit: pagination.itemsPerPage,
+            ...(pagination.itemsPerPage != 'all' && { _limit: pagination.itemsPerPage }),
             ...(searchValue && { q: searchValue }),
          };
-         console.log('params', params);
+
          // First get to items per page
          // Second get return all items with selected caregory, to calculate quantity pagination pages
          axios
