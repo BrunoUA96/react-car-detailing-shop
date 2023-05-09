@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // List Sort Options
 export const sortOptions = [
@@ -10,8 +10,19 @@ export const sortOptions = [
 
 const Sort = ({ sortItem, setSortItem }) => {
    const [isVisible, setIsVisible] = useState(false);
+
+   const sortRef = useRef(null);
+
+   useEffect(() => {
+      document.body.addEventListener('click', (event) => {
+         if (!event.composedPath().includes(sortRef.current)) {
+            setIsVisible(false);
+         }
+      });
+   }, []);
+
    return (
-      <div className="sort">
+      <div ref={sortRef} className="sort">
          <div className="sort__label">
             <svg
                width="10"
