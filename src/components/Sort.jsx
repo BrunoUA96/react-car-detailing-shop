@@ -14,6 +14,7 @@ const Sort = ({ sortItem, setSortItem }) => {
    const sortRef = useRef(null);
 
    useEffect(() => {
+      // Mount function (subscribe)
       const handleClickOutside = (event) => {
          if (!event.composedPath().includes(sortRef.current)) {
             setIsVisible(false);
@@ -22,6 +23,8 @@ const Sort = ({ sortItem, setSortItem }) => {
       };
       document.body.addEventListener('click', handleClickOutside);
 
+      // To unmount function (unsubscribe)
+      // When i leave from this page, need to unsubscribe from memory
       return () => {
          document.body.removeEventListener('click', handleClickOutside);
       };
