@@ -14,11 +14,17 @@ const Sort = ({ sortItem, setSortItem }) => {
    const sortRef = useRef(null);
 
    useEffect(() => {
-      document.body.addEventListener('click', (event) => {
+      const handleClickOutside = (event) => {
          if (!event.composedPath().includes(sortRef.current)) {
             setIsVisible(false);
+            console.log('click outside');
          }
-      });
+      };
+      document.body.addEventListener('click', handleClickOutside);
+
+      return () => {
+         document.body.removeEventListener('click', handleClickOutside);
+      };
    }, []);
 
    return (
