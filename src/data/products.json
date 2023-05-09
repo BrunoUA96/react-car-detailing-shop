@@ -1,6 +1,7 @@
 {
    "products": [
       {
+         "id": 1,
          "title": "Meguiar's 3.5 Gallon Wash Bucket",
          "price": 10.99,
          "category": 1,
@@ -10,6 +11,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/e/meguiars-bucket.png"
       },
       {
+         "id": 2,
          "title": "Meguiar's Ultimate Snow Foam Xtreme Cling Wash, ",
          "price": 19.99,
          "category": 1,
@@ -19,6 +21,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/u/l/ultimate-snow-foam-g191532.png"
       },
       {
+         "id": 3,
          "title": "Meguiar's Hybrid Wash Mitt",
          "price": 9.99,
          "category": 1,
@@ -28,6 +31,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/x/2/x210200_hybridwashmitt_hero.png"
       },
       {
+         "id": 4,
          "title": "Meguiar's Hybrid Ceramic Wash & Wax, ",
          "price": 22.99,
          "category": 1,
@@ -37,6 +41,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/2/g210256_hybridceramicwashnwax.png"
       },
       {
+         "id": 5,
          "title": "Meguiar's Ultimate Wash & Wax, ",
          "price": 13.99,
          "category": 1,
@@ -46,6 +51,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g17748.png"
       },
       {
+         "id": 6,
          "title": "Meguiar's Gold Class Car Wash Shampoo & Conditioner, ",
          "price": 13.99,
          "category": 1,
@@ -55,6 +61,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/7/g7164.jpg"
       },
       {
+         "id": 7,
          "title": "Meguiar's D2002 Iron Removing Spray Clay,  RTU",
          "price": 23.99,
          "category": 1,
@@ -64,6 +71,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/d/r/drtu200232_ironremovingsprayclay_fr_1.png"
       },
       {
+         "id": 8,
          "title": "Meguiar's Hybrid Ceramic Pre-Wax Prep, ",
          "price": 14.99,
          "category": 1,
@@ -73,6 +81,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/d/r/drtu200232_ironremovingsprayclay_fr_1.png"
       },
       {
+         "id": 9,
          "title": "Meguiar's Hybrid Ceramic Pre-Wax Prep, ",
          "price": 14.99,
          "category": 1,
@@ -82,6 +91,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/2/g220416_hybridceramicpre-waxprep.png"
       },
       {
+         "id": 10,
          "title": "Meguiar's M122 Surface Prep, 1 Gallon",
          "price": 39.99,
          "category": 1,
@@ -91,6 +101,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/1/m12201_surfaceprep.png"
       },
       {
+         "id": 11,
          "title": "Meguiar's Hybrid Ceramic Quik Clay Kit",
          "price": 33.99,
          "category": 1,
@@ -100,6 +111,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/2/g200200_hcclaykit_web.png"
       },
       {
+         "id": 12,
          "title": "Meguiar's Smooth Surface Clay Kit",
          "price": 30.99,
          "category": 1,
@@ -109,6 +121,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g191700-smooth-surface-clay-kit-v2.0.png"
       },
       {
+         "id": 13,
          "title": "Meguiar's Ultimate Compound, ",
          "price": 12.99,
          "category": 1,
@@ -118,6 +131,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g17216.png"
       },
       {
+         "id": 14,
          "title": "Meguiar's Ultimate Polish, ",
          "price": 11.99,
          "category": 1,
@@ -127,6 +141,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g19216.png"
       },
       {
+         "id": 15,
          "title": "Meguiar's Clear Coat Safe Rubbing Compound, ",
          "price": 7.99,
          "category": 1,
@@ -136,6 +151,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g18016.jpg"
       },
       {
+         "id": 16,
          "title": "Meguiar's Water Spot Remover, ",
          "price": 11.99,
          "category": 1,
@@ -145,6 +161,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/a/3/a3714.jpg"
       },
       {
+         "id": 17,
          "title": "Meguiar's DA Power System",
          "price": 70.99,
          "category": 1,
@@ -154,6 +171,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/3/g3500.jpg"
       },
       {
+         "id": 18,
          "title": "Meguiar's Perfect Clarity Glass Cleaner",
          "price": 5.99,
          "category": 1,
@@ -163,6 +181,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/8/g8224.png"
       },
       {
+         "id": 19,
          "title": "Meguiar's Black Chrome Scent Protectant Wipes",
          "price": 6.99,
          "category": 2,
@@ -172,6 +191,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g190800_blackchromescentwipes_hero_10x10.png"
       },
       {
+         "id": 20,
          "title": "Meguiar's Ultimate Insane Shine Protectant Wipes",
          "price": 8.99,
          "category": 2,
@@ -181,6 +201,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/2/g220200_ultiinsshineprotectwipes_10x10.png"
       },
       {
+         "id": 21,
          "title": "Meguiar's Ultimate Insane Shine Protectant Spray, ",
          "price": 9.99,
          "category": 2,
@@ -190,6 +211,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/2/g220216_ultiinsshineprotectspray_10x10.png"
       },
       {
+         "id": 22,
          "title": "Meguiar's Citrus Fresh Cleaning Wipes",
          "price": 6.99,
          "category": 2,
@@ -199,6 +221,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g190600_citrusfreshcleaningwipes_hero.png"
       },
       {
+         "id": 23,
          "title": "Meguiar's Ultimate Protectant Spray, 15",
          "price": 11.99,
          "category": 2,
@@ -208,6 +231,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g14716.png"
       },
       {
+         "id": 24,
          "title": "Meguiar's Quik Interior Detailer Wipes",
          "price": 6.99,
          "category": 2,
@@ -217,6 +241,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g13600.jpg"
       },
       {
+         "id": 25,
          "title": "Meguiar's Supreme Shine Protectant Wipes",
          "price": 7.99,
          "category": 2,
@@ -226,6 +251,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/4/g4000.jpg"
       },
       {
+         "id": 26,
          "title": "Meguiar's Ultimate Leather Detailer, ",
          "price": 11.99,
          "category": 2,
@@ -235,6 +261,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/2/g201316_ultleatherdetailer_web.png"
       },
       {
+         "id": 27,
          "title": "Meguiar's Gold Class Leather & Vinyl Cleaner, ",
          "price": 8.99,
          "category": 2,
@@ -244,6 +271,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g18516_gcvnyllthrclnr.png"
       },
       {
+         "id": 28,
          "title": "Meguiar's Gold Class Rich Leather Cleaner & Conditioner Wipes",
          "price": 7.99,
          "category": 2,
@@ -253,6 +281,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g10900gcrichleatherwipes.png"
       },
       {
+         "id": 29,
          "title": "Meguiar's Gold Class Rich Leather Cleaner/Conditioner, ",
          "price": 8.99,
          "category": 2,
@@ -262,6 +291,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/7/g7214_gcrichleatherlotion.png"
       },
       {
+         "id": 30,
          "title": "Meguiar's Citrus Fresh Cleaning Wipes",
          "price": 6.99,
          "category": 2,
@@ -271,6 +301,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g190600_citrusfreshcleaningwipes_hero.png"
       },
       {
+         "id": 31,
          "title": "Meguiar's Carpet & Upholstery Cleaner - ",
          "price": 6.99,
          "category": 2,
@@ -280,6 +311,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g191419_carpetupholstercleaner_hero.png"
       },
       {
+         "id": 32,
          "title": "Meguiar's Carpet & Cloth Refresher",
          "price": 6.99,
          "category": 2,
@@ -289,6 +321,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g180724_carpetclothrefresher.png"
       },
       {
+         "id": 33,
          "title": "Meguiar's Whole Car Air Re-Fresher – Piña Colada Scent",
          "price": 8.99,
          "category": 2,
@@ -298,6 +331,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g191602_wholecarairre-fresher_pinacolada_hero.png"
       },
       {
+         "id": 34,
          "title": "Meguiar's Whole Car Air Re-Fresher – Fiji Sunset Scent",
          "price": 8.99,
          "category": 2,
@@ -307,6 +341,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/2/g201502_airrefreshfiji.png"
       },
       {
+         "id": 35,
          "title": "Meguiar's Whole Car Air Re-Fresher - Black Chrome Scent",
          "price": 8.99,
          "category": 2,
@@ -316,6 +351,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g181302_airrefresher_black_chrome_hero_box.png"
       },
       {
+         "id": 36,
          "title": "Meguiar's Whole Car Air Re-Fresher - New Car Scent",
          "price": 8.99,
          "category": 2,
@@ -325,6 +361,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/1/g16402_airrefreshnewcar.png"
       },
       {
+         "id": 37,
          "title": "Meguiar's 3 Level Detailing Cart",
          "price": 215.99,
          "category": 3,
@@ -334,6 +371,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/g/mgcart_detailingcart.png"
       },
       {
+         "id": 38,
          "title": "Meguiar's MT300 Professional DA Polisher",
          "price": 299.99,
          "category": 3,
@@ -343,6 +381,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/t/mt300.png"
       },
       {
+         "id": 39,
          "title": "Meguiar's DA Power System",
          "price": 70.99,
          "category": 3,
@@ -352,6 +391,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/3/g3500.jpg"
       },
       {
+         "id": 40,
          "title": "Meguiar's MT103 Sunlight 3+ - Professional Paint Inspection Light",
          "price": 189.99,
          "category": 3,
@@ -361,6 +401,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/t/mt103_sunlight3_1.png"
       },
       {
+         "id": 41,
          "title": "Meguiar's Soft Buff DA Foam Cutting Disc - 6 inch",
          "price": 14.99,
          "category": 3,
@@ -370,6 +411,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/d/f/dfc6_front.png"
       },
       {
+         "id": 42,
          "title": "Meguiar's Soft Buff DA Foam Polishing Disc - 6 inch",
          "price": 14.99,
          "category": 3,
@@ -379,6 +421,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/d/f/dfp6_front.png"
       },
       {
+         "id": 43,
          "title": "Meguiar's DA Polishing Power Pads",
          "price": 17.99,
          "category": 3,
@@ -388,6 +431,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/g/3/g3508_polishingpads_outofpack.png"
       },
       {
+         "id": 44,
          "title": "Meguiar's Grit Guard",
          "price": 17.99,
          "category": 3,
@@ -397,6 +441,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/x/3/x3003.jpg"
       },
       {
+         "id": 45,
          "title": "Meguiar's X210400 Detailing Bag",
          "price": 67.99,
          "category": 3,
@@ -406,6 +451,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/d/e/detailerbag_front.png"
       },
       {
+         "id": 46,
          "title": "Meguiar's Ultimate Kit",
          "price": 99.0,
          "category": 4,
@@ -415,6 +461,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/e/meguiars-ultimate-kit_1_1.png"
       },
       {
+         "id": 47,
          "title": "Meguiar's New Car Kit",
          "price": 79.0,
          "category": 4,
@@ -424,6 +471,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/e/meguiars-new-car-kit_1.png"
       },
       {
+         "id": 48,
          "title": "Meguiar's Wash Kit",
          "price": 66.0,
          "category": 4,
@@ -433,6 +481,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/e/meguiars-wash-kit.png"
       },
       {
+         "id": 49,
          "title": "Meguiar's Basics Kit",
          "price": 59.0,
          "category": 4,
@@ -442,6 +491,7 @@
          "imageProguct": "https://www.meguiarsdirect.com/pub/media/catalog/product/cache/small_image/360x360/beff4985b56e3afdbeabfc89641a4582/m/e/meguiars-basics-kit.png"
       },
       {
+         "id": 50,
          "title": "Meguiar's Polisher Kit",
          "price": 339.0,
          "category": 4,
