@@ -181,6 +181,26 @@ body {
          justify-content: space-between;
          width: 13%;
 
+         :disabled {
+            border-color: $gray-line;
+
+            &:hover {
+               background-color: $gray-line;
+
+               svg {
+                  path {
+                     fill: white;
+                  }
+               }
+            }
+
+            svg {
+               path {
+                  fill: $gray-line;
+               }
+            }
+         }
+
          &-minus {
             svg {
                path:first-of-type {

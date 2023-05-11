@@ -1,8 +1,29 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProduct } from '../../redux/slices/cartSlise';
 
-const CarPartBlock = ({ title, price, subCategory, imageProguct, quantity, size }) => {
+const CarPartBlock = ({ id, title, price, subCategory, imageProguct, quantity, size }) => {
+   const dispatch = useDispatch();
+   // Find added product
+   const addedProduct = useSelector((state) => state.cart.products.find((obj) => obj.id === id));
+   // If product doesn't exist in redux put 0
+   const addedCount = addedProduct ? addedProduct.count : 0;
+
    const [activeQuantity, setActiveQuantity] = useState(0);
    const [activeSize, setActiveSize] = useState(0);
+
+   const addToCart = () => {
+      const product = {
+         id,
+         title,
+         price,
+         imageProguct,
+         quantity: quantity[activeQuantity],
+         size: size[activeSize],
+      };
+
+      dispatch(addProduct(product));
+   };
 
    return (
       <div className="car-parts-block">
@@ -40,7 +61,7 @@ const CarPartBlock = ({ title, price, subCategory, imageProguct, quantity, size 
 
          <div className="car-parts-block__bottom">
             <div className="car-parts-block__price">${price}</div>
-            <button className="button button--outline button--add">
+            <button onClick={addToCart} className="button button--outline button--add">
                <svg
                   width="12"
                   height="12"
@@ -53,7 +74,7 @@ const CarPartBlock = ({ title, price, subCategory, imageProguct, quantity, size 
                   />
                </svg>
                <span>Add</span>
-               <i>0</i>
+               {addedCount > 0 && <i>{addedCount}</i>}
             </button>
          </div>
       </div>

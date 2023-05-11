@@ -18,7 +18,6 @@ const Sort = ({ sortItem, setSortItem }) => {
       const handleClickOutside = (event) => {
          if (!event.composedPath().includes(sortRef.current)) {
             setIsVisible(false);
-            console.log('click outside');
          }
       };
       document.body.addEventListener('click', handleClickOutside);
