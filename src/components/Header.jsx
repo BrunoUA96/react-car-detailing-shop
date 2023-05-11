@@ -1,9 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Search from './Search';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
+   const location = useLocation();
    const { totalPrice, productsCount } = useSelector((state) => state.cart);
+   const [showSearchInput, setSearchInput] = useState(false);
+
+   // If not home page, hide search input
+   useEffect(() => {
+      if (location.pathname === '/') {
+         setSearchInput(true);
+      } else {
+         setSearchInput(false);
+      }
+   }, [location]);
 
    return (
       <div className="header">
@@ -14,7 +26,10 @@ const Header = () => {
                   <p>Car detailing products</p>
                </div>
             </Link>
-            <Search />
+
+            {/* Search input */}
+            {showSearchInput && <Search />}
+
             <div className="header__cart">
                <Link to="cart" className="button button--cart">
                   <span>$ {totalPrice.toFixed(2)}</span>
