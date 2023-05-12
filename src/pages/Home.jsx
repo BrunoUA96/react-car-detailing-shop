@@ -98,48 +98,45 @@ const Home = () => {
       initialParams.current = false;
    }, [categoryId, sortItem, pagination.currentPage, pagination.itemsPerPage, searchValue]);
 
-   const fetchItems = () => {
+   const fetchItems = async () => {
+      dispatch(setIsLoading(true));
+
+      const params = {
+         // if category 'All products' is selected, i dont need param 'category' in params
+         ...(categoryId && { category: categoryId }),
+         _sort: sortItem.property,
+         _order: sortItem.orderBy,
+         ...(pagination.itemsPerPage != 'all' && { _page: pagination.currentPage }),
+         // _limit has static number, thus i limit number of items per page
+         ...(pagination.itemsPerPage != 'all' && { _limit: pagination.itemsPerPage }),
+         ...(searchValue && { title_like: searchValue }),
+      };
+
+      // Get products
       try {
-         dispatch(setIsLoading(true));
          const baseAPI = 'http://localhost:3000/products';
 
-         const params = {
-            // if category 'All products' is selected, i dont need param 'category' in params
-            ...(categoryId && { category: categoryId }),
-            _sort: sortItem.property,
-            _order: sortItem.orderBy,
-            ...(pagination.itemsPerPage != 'all' && { _page: pagination.currentPage }),
-            // _limit has static number, thus i limit number of items per page
-            ...(pagination.itemsPerPage != 'all' && { _limit: pagination.itemsPerPage }),
-            ...(searchValue && { title_like: searchValue }),
-         };
+         const [items, quantity] = await axios.all([
+            // First get to items per page
+            axios.get(baseAPI, { params: { ...params } }),
+            // Second get return all items with selected caregory, to calculate quantity pagination pages
+            axios.get(baseAPI, {
+               params: { category: params.category, title_like: params.title_like },
+            }),
+         ]);
 
-         // First get to items per page
-         // Second get return all items with selected caregory, to calculate quantity pagination pages
-         axios
-            .all([
-               axios.get(baseAPI, { params: { ...params } }),
-               axios.get(baseAPI, {
-                  params: { category: params.category, title_like: params.title_like },
-               }),
-            ])
-            .then(
-               axios.spread((items, quantity) => {
-                  // output of req.
-                  setProducts(items.data);
-                  // Count number of pages
-                  dispatch(
-                     setPaginationCount(
-                        Math.ceil(quantity.data.length / Number(pagination.itemsPerPage)),
-                     ),
-                  );
+         // Save Products
+         setProducts(items.data);
 
-                  dispatch(setIsLoading(false));
-               }),
-            );
+         // Count number of pages
+         dispatch(
+            setPaginationCount(Math.ceil(quantity.data.length / Number(pagination.itemsPerPage))),
+         );
       } catch (error) {
-         dispatch(setIsLoading(true));
-         console.error(error);
+         console.log(error);
+         window.alert('Products are currently unavailable');
+      } finally {
+         dispatch(setIsLoading(false));
       }
    };
 
