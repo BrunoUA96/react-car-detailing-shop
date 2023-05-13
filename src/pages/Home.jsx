@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from 'react';
 
-import Categories from '../components/Categories';
+import Categories, { categoryList } from '../components/Categories';
 import Sort from '../components/Sort';
 import ProductCard from '../components/ProductCard';
 import Skeleton from '../components/ProductCard/Skeleton';
@@ -145,7 +145,7 @@ const Home = () => {
             <Categories categoryId={categoryId} setCategoryId={(id) => changeCategory(id)} />
             <Sort sortItem={sortItem} setSortItem={(obj) => changeSort(obj)} />
          </div>
-         <h2 className="content__title">All products</h2>
+         <h2 className="content__title">{categoryList[categoryId]}</h2>
          {/* Product List */}
          {status === 'error' ? (
             <div className="content__items--error">
