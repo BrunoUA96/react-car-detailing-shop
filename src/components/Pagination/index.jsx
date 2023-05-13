@@ -1,13 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Pagination.module.scss';
-import { setCurrentPage, setItemsPerPage } from '../../redux/slices/productSlice';
+import {
+   selectProductPagination,
+   setCurrentPage,
+   setItemsPerPage,
+} from '../../redux/slices/productSlice';
 import Select from 'react-select';
 
 const Pagination = () => {
    const dispatch = useDispatch();
-   const { currentPage, paginationCount, itemsPerPage } = useSelector(
-      (state) => state.product.pagination,
-   );
+   const { currentPage, paginationCount, itemsPerPage } = useSelector(selectProductPagination);
 
    const options = [
       { value: 4, label: 4 },

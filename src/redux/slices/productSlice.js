@@ -1,19 +1,23 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setCategoryId } from './fitersSlice';
 
-export const fetchProducts = createAsyncThunk('product/fetchProductsStatus', async (params) => {
-   const baseAPI = 'http://localhost:3000/products';
-   const [products, productsQuantity] = await axios.all([
-      // First get to items per page
-      await axios.get(baseAPI, { params: { ...params } }),
-      // Second get return all items with selected caregory, to calculate quantity pagination pages
-      await axios.get(baseAPI, {
-         params: { category: params.category, title_like: params.title_like },
-      }),
-   ]);
+export const fetchProducts = createAsyncThunk(
+   'product/fetchProductsStatus',
+   async (params, thunkAPI) => {
+      const baseAPI = 'http://localhost:3000/products';
+      const [products, productsQuantity] = await axios.all([
+         // First get to items per page
+         await axios.get(baseAPI, { params: { ...params } }),
+         // Second get return all items with selected caregory, to calculate quantity pagination pages
+         await axios.get(baseAPI, {
+            params: { category: params.category, title_like: params.title_like },
+         }),
+      ]);
 
-   return { products: products.data, quantity: productsQuantity.data.length };
-});
+      return { products: products.data, quantity: productsQuantity.data.length };
+   },
+);
 
 const initialState = {
    products: [],
@@ -82,6 +86,10 @@ export const productSlice = createSlice({
       });
    },
 });
+
+export const selectProducts = (state) => state.product;
+
+export const selectProductPagination = (state) => state.product.pagination;
 
 // Action creators are generated for each case reducer function
 export const { setProducts, setStatus, setCurrentPage, setItemsPerPage } = productSlice.actions;

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct } from '../../redux/slices/cartSlise';
+import { addProduct, selectProductById } from '../../redux/slices/cartSlise';
 
 const CarPartBlock = ({ id, title, price, subCategory, imageProguct, quantity, size }) => {
    const dispatch = useDispatch();
    // Find added product
-   const addedProduct = useSelector((state) => state.cart.products.find((obj) => obj.id === id));
+   const addedProduct = useSelector(selectProductById(id));
    // If product doesn't exist in redux put 0
    const addedCount = addedProduct ? addedProduct.count : 0;
 

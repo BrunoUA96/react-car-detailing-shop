@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addProduct, decrementItemQuantity, removeProduct } from '../../../redux/slices/cartSlise';
 
 const ProductCart = ({ id, title, imageProguct, price, size, quantity, count }) => {
-   const { products } = useSelector((state) => state.cart);
    const dispatch = useDispatch();
 
    const onIncrementQuantity = () => {

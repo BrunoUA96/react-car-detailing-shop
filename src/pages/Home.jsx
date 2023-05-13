@@ -8,8 +8,19 @@ import Pagination from '../components/Pagination';
 
 import { SearchContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategoryId, setFilters, setSortItem } from '../redux/slices/fitersSlice';
-import { setCurrentPage, setItemsPerPage } from '../redux/slices/productSlice';
+import {
+   selectFilterCategory,
+   selectFilterSortItem,
+   setCategoryId,
+   setFilters,
+   setSortItem,
+} from '../redux/slices/fitersSlice';
+import {
+   selectProductPagination,
+   selectProducts,
+   setCurrentPage,
+   setItemsPerPage,
+} from '../redux/slices/productSlice';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { fetchProducts } from '../redux/slices/productSlice';
@@ -23,12 +34,14 @@ const Home = () => {
    const isMounted = useRef(false);
 
    // State for Category
-   const categoryId = useSelector((state) => state.filters.category);
+   const categoryId = useSelector(selectFilterCategory);
 
    // State for SortBy
-   const sortItem = useSelector((state) => state.filters.sortItem);
+   const sortItem = useSelector(selectFilterSortItem);
 
-   const { products, status, pagination } = useSelector((state) => state.product);
+   const { products, status } = useSelector(selectProducts);
+
+   const pagination = useSelector(selectProductPagination);
 
    const { searchValue } = useContext(SearchContext);
 

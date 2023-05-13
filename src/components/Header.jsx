@@ -2,10 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 import Search from './Search';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { selectCart } from '../redux/slices/cartSlise';
 
 const Header = () => {
    const location = useLocation();
-   const { totalPrice, productsCount } = useSelector((state) => state.cart);
+   const { totalPrice, productsCount } = useSelector(selectCart);
    const [showSearchInput, setSearchInput] = useState(false);
 
    // If not home page, hide search input
