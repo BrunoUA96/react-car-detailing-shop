@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -6,14 +6,13 @@ import ProductCard from '../components/ProductCard';
 import Skeleton from '../components/ProductCard/Skeleton';
 import Pagination from '../components/Pagination';
 
-import axios from 'axios';
 import { SearchContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId, setFilters, setSortItem } from '../redux/slices/fitersSlice';
-import { setIsLoading } from '../redux/slices/loadingSlice';
+import { setCurrentPage, setItemsPerPage } from '../redux/slices/productSlice';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import { setCurrentPage, setPaginationCount } from '../redux/slices/fitersSlice';
+import { fetchProducts } from '../redux/slices/productSlice';
 import { sortOptions } from '../components/Sort';
 
 const Home = () => {
@@ -25,15 +24,11 @@ const Home = () => {
 
    // State for Category
    const categoryId = useSelector((state) => state.filters.category);
-   const isLoading = useSelector((state) => state.loading.isLoading);
 
    // State for SortBy
    const sortItem = useSelector((state) => state.filters.sortItem);
 
-   // Pagination state
-   const pagination = useSelector((state) => state.filters.pagination);
-
-   const [products, setProducts] = useState([]);
+   const { products, status, pagination } = useSelector((state) => state.product);
 
    const { searchValue } = useContext(SearchContext);
 
@@ -50,17 +45,25 @@ const Home = () => {
    }
 
    // Only first render, check url params
-   // If there are parameters, use them on the first render
+   // If url has parameters, use them on the first render
    useEffect(() => {
+      // Check if url params exist in the first render
       if (window.location.search) {
-         const urlParams = qs.parse(window.location.search, { ignoreQueryPrefix: true });
+         // Destructuring url params
+         const { category, _sort, _order, _page, _limit } = qs.parse(window.location.search, {
+            // Use to delete '?' from params
+            ignoreQueryPrefix: true,
+         });
+
+         // if exist pagination params
+         if (_page) dispatch(setCurrentPage(Number(_page)));
+         if (_limit) dispatch(setItemsPerPage(_limit));
 
          // To find selected sort obj in the sortOptions list
-         const sortObj = sortOptions.find(
-            (obj) => obj.property == urlParams._sort && obj.orderBy == urlParams._order,
-         );
+         const sortObj = sortOptions.find((obj) => obj.property == _sort && obj.orderBy == _order);
 
-         dispatch(setFilters({ ...urlParams, sortObj }));
+         // If success find param in params list
+         if (sortObj) dispatch(setFilters({ category, sortObj }));
 
          initialParams.current = true;
       }
@@ -80,7 +83,7 @@ const Home = () => {
             ...(searchValue && { title_like: searchValue }),
          };
 
-         const queryParams = qs.stringify({ ...params }, { addQueryPrefix: true });
+         const queryParams = qs.stringify({ ...params }, { addQueryPrefix: true }); //addQueryPrefix add '?' before params
 
          navigate(queryParams);
       }
@@ -92,15 +95,13 @@ const Home = () => {
       window.scrollTo(0, 0);
 
       if (!initialParams.current) {
-         fetchItems();
+         getProducts();
       }
 
       initialParams.current = false;
    }, [categoryId, sortItem, pagination.currentPage, pagination.itemsPerPage, searchValue]);
 
-   const fetchItems = async () => {
-      dispatch(setIsLoading(true));
-
+   const getProducts = async () => {
       const params = {
          // if category 'All products' is selected, i dont need param 'category' in params
          ...(categoryId && { category: categoryId }),
@@ -113,32 +114,16 @@ const Home = () => {
       };
 
       // Get products
-      try {
-         const baseAPI = 'http://localhost:3000/products';
-
-         const [items, quantity] = await axios.all([
-            // First get to items per page
-            axios.get(baseAPI, { params: { ...params } }),
-            // Second get return all items with selected caregory, to calculate quantity pagination pages
-            axios.get(baseAPI, {
-               params: { category: params.category, title_like: params.title_like },
-            }),
-         ]);
-
-         // Save Products
-         setProducts(items.data);
-
-         // Count number of pages
-         dispatch(
-            setPaginationCount(Math.ceil(quantity.data.length / Number(pagination.itemsPerPage))),
-         );
-      } catch (error) {
-         console.log(error);
-         window.alert('Products are currently unavailable');
-      } finally {
-         dispatch(setIsLoading(false));
-      }
+      dispatch(fetchProducts(params));
    };
+
+   // Render skeleton component
+   const skeleton = [...new Array(8)].map((_, index) => <Skeleton key={index} />);
+
+   // Render product list
+   const productList = products.map((obj, index) => (
+      <ProductCard key={index + obj.title} {...obj} />
+   ));
 
    return (
       <>
@@ -149,13 +134,18 @@ const Home = () => {
          </div>
          <h2 className="content__title">All products</h2>
          {/* Product List */}
-         <div className="content__items">
-            {isLoading
-               ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-               : products.map((obj, index) => <ProductCard key={index + obj.title} {...obj} />)}
-         </div>
+         {status === 'error' ? (
+            <div className="content__items--error">
+               <h2>
+                  Something is wrong <span>😕</span>
+               </h2>
+               <p>Try refreshing the page later</p>
+            </div>
+         ) : (
+            <div className="content__items">{status === 'loading' ? skeleton : productList}</div>
+         )}
          {/* Pagination */}
-         <Pagination />
+         {status === 'success' && <Pagination />}
       </>
    );
 };

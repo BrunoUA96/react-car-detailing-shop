@@ -37,6 +37,24 @@ body {
       border-bottom: 1px solid #f3f3f3;
       padding-bottom: 50px;
 
+      &--error {
+         margin: 0 auto;
+         width: 560px;
+         text-align: center;
+
+         h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+         }
+
+         p {
+            font-size: 18px;
+            line-height: 145.4%;
+            letter-spacing: 0.01em;
+            color: #777777;
+         }
+      }
+
       @media screen and (max-width: 1500px) {
          grid-template-columns: repeat(3, 1fr);
       }

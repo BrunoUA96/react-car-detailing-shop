@@ -3,8 +3,8 @@ import styles from './Search.module.scss';
 import { SearchContext } from '../../App';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
-import { setIsLoading } from '../../redux/slices/loadingSlice';
-import { setCurrentPage } from '../../redux/slices/fitersSlice';
+import { setStatus } from '../../redux/slices/productSlice';
+import { setCurrentPage } from '../../redux/slices/productSlice';
 
 const Search = () => {
    const dispach = useDispatch();
@@ -16,7 +16,6 @@ const Search = () => {
       debounce((str) => {
          setSearchValue(str);
          dispach(setCurrentPage(1));
-         dispach(setIsLoading(false));
       }, 500),
       [],
    );
@@ -24,7 +23,7 @@ const Search = () => {
    const onChangeValue = (event) => {
       setLocalSerchValue(event.target.value);
 
-      dispach(setIsLoading(true));
+      dispach(setStatus('loading'));
       debounceValue(event.target.value);
    };
 
