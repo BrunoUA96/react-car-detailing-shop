@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, selectProductById } from '../../redux/slices/cartSlise';
+import ContentLoader from 'react-content-loader';
 
 const CarPartBlock = ({ id, title, price, subCategory, imageProguct, quantity, size }) => {
    const dispatch = useDispatch();
+
+   // I take image from a third size
+   // That's why i need to check if image is finally loaded
+   const [imgIsLoaded, setImgIsLoaded] = useState(false);
+
    // Find added product
    const addedProduct = useSelector(selectProductById(id));
-   // If product doesn't exist in redux put 0
+   // If product doesn't exist in redux put count 0
+   // Else put number of added
    const addedCount = addedProduct ? addedProduct.count : 0;
 
    const [activeQuantity, setActiveQuantity] = useState(0);
@@ -27,7 +34,28 @@ const CarPartBlock = ({ id, title, price, subCategory, imageProguct, quantity, s
 
    return (
       <div className="car-parts-block">
-         <img className="car-parts-block__image" src={imageProguct} alt="car-parts" />
+         {/* When image loading */}
+         {!imgIsLoaded && (
+            <ContentLoader
+               speed={5}
+               width={240}
+               height={260}
+               viewBox="0 0 240 260"
+               backgroundColor="#f3f3f3"
+               foregroundColor="#ecebeb">
+               <rect x="0" y="0" rx="10" ry="10" width="240" height="260" />
+            </ContentLoader>
+         )}
+
+         {/* If image is loaded, hodden param is false */}
+         <img
+            hidden={!imgIsLoaded}
+            className="car-parts-block__image"
+            src={imageProguct}
+            alt="car-parts"
+            onLoad={() => setImgIsLoaded(true)}
+         />
+
          <h4 className="car-parts-block__title">{title}</h4>
          <span className="car-parts-block__subtitle">{subCategory}</span>
          {(quantity.length > 0 || size.length > 0) && (
@@ -58,7 +86,6 @@ const CarPartBlock = ({ id, title, price, subCategory, imageProguct, quantity, s
                )}
             </div>
          )}
-
          <div className="car-parts-block__bottom">
             <div className="car-parts-block__price">${price}</div>
             <button onClick={addToCart} className="button button--outline button--add">
