@@ -1,22 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
 import Search from './Search';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { selectCart } from '../redux/slices/cartSlise';
 
 const Header = () => {
-   const location = useLocation();
-   const { totalPrice, productsCount } = useSelector(selectCart);
-   const [showSearchInput, setSearchInput] = useState(false);
+   // Check pathname to show/hide search input
+   const { pathname } = useLocation();
 
-   // If not home page, hide search input
-   useEffect(() => {
-      if (location.pathname === '/') {
-         setSearchInput(true);
-      } else {
-         setSearchInput(false);
-      }
-   }, [location]);
+   // Redux data necessary to cart button
+   const { totalPrice, productsCount } = useSelector(selectCart);
 
    return (
       <div className="header">
@@ -29,7 +21,7 @@ const Header = () => {
             </Link>
 
             {/* Search input */}
-            {showSearchInput && <Search />}
+            {pathname !== '/cart' && <Search />}
 
             <div className="header__cart">
                <Link to="cart" className="button button--cart">

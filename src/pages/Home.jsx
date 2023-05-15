@@ -22,13 +22,15 @@ import {
    setItemsPerPage,
 } from '../redux/slices/productSlice';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchProducts } from '../redux/slices/productSlice';
 import { sortOptions } from '../components/Sort';
 
 const Home = () => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
+   const location = useLocation();
+
    // Use this ref to check url params
    const initialParams = useRef(false);
    const isMounted = useRef(false);
@@ -61,9 +63,9 @@ const Home = () => {
    // If url has parameters, use them on the first render
    useEffect(() => {
       // Check if url params exist in the first render
-      if (window.location.search) {
+      if (location.search) {
          // Destructuring url params
-         const { category, _sort, _order, _page, _limit } = qs.parse(window.location.search, {
+         const { category, _sort, _order, _page, _limit } = qs.parse(location.search, {
             // Use to delete '?' from params
             ignoreQueryPrefix: true,
          });
