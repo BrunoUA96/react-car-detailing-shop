@@ -7,7 +7,7 @@ import { setStatus } from '../../redux/slices/productSlice';
 import { setCurrentPage } from '../../redux/slices/productSlice';
 
 const Search = () => {
-   const dispach = useDispatch();
+   const dispatch = useDispatch();
 
    const { searchValue, setSearchValue } = useContext(SearchContext);
    const [localSearchValue, setLocalSerchValue] = useState('');
@@ -15,7 +15,7 @@ const Search = () => {
    const debounceValue = useCallback(
       debounce((str) => {
          setSearchValue(str);
-         dispach(setCurrentPage(1));
+         dispatch(setCurrentPage(1));
       }, 500),
       [],
    );
@@ -23,7 +23,7 @@ const Search = () => {
    const onChangeValue = (event) => {
       setLocalSerchValue(event.target.value);
 
-      dispach(setStatus('loading'));
+      dispatch(setStatus('loading'));
       debounceValue(event.target.value);
    };
 
@@ -33,7 +33,7 @@ const Search = () => {
    const resetInput = () => {
       setSearchValue('');
       setLocalSerchValue('');
-      dispach(setCurrentPage(1));
+      dispatch(setCurrentPage(1));
       searchInputRef.current.focus();
    };
 
