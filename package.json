@@ -5,8 +5,9 @@
    "type": "module",
    "scripts": {
       "test": "vite --host & json-server --host 192.168.1.3 --watch src/data/products.json ",
-      "dev": "vite & json-server --watch src/data/products.json ",
-      "build": "vite build",
+      "dev1": "vite & json-server --watch src/data/products.json ",
+      "dev": "vite",
+      "build": "tsc && vite build",
       "preview": "vite preview"
    },
    "dependencies": {
@@ -21,12 +22,14 @@
       "react-redux": "^8.0.5",
       "react-router-dom": "^6.10.0",
       "react-select": "^5.7.3",
-      "sass": "^1.62.0"
+      "sass": "^1.62.0",
+      "vite-tsconfig-paths": "^4.2.0"
    },
    "devDependencies": {
-      "@types/react": "^18.0.28",
-      "@types/react-dom": "^18.0.11",
+      "@types/react": "^18.2.0",
+      "@types/react-dom": "^18.2.0",
       "@vitejs/plugin-react": "^3.1.0",
+      "typescript": "^5.0.4",
       "vite": "^4.2.0"
    }
 }
