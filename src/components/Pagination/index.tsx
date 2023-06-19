@@ -32,7 +32,7 @@ const Pagination = () => {
   ];
 
   const onSelectItemsPerPage = (option: any) => {
-    dispatch(setItemsPerPage(option));
+    dispatch(setItemsPerPage(option.value));
     dispatch(setCurrentPage(1));
   };
 
