@@ -24,6 +24,21 @@ const initialState: CartSliceInterface = {
   totalPrice: 0,
 };
 
+// Recalculate the price in the cart
+const cartTotalPriceCount = (state: CartSliceInterface) => {
+  state.totalPrice = state.products.reduce((sum, obj) => {
+    return obj.price * obj.count + sum;
+  }, 0);
+};
+
+// Calculate total product caunt in the cats
+const cartProductCount = (state: CartSliceInterface) => {
+  state.productsCount = state.products.reduce(
+    (sum, product) => sum + product.count,
+    0
+  );
+};
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -50,16 +65,11 @@ export const cartSlice = createSlice({
         });
       }
 
-      // Calculate price of cart
-      state.totalPrice = state.products.reduce((sum, obj) => {
-        return obj.price * obj.count + sum;
-      }, 0);
+      // Recalculate the price in the cart
+      cartTotalPriceCount(state);
 
-      // Calculate total product caunt in the cats
-      state.productsCount = state.products.reduce(
-        (sum, product) => sum + product.count,
-        0
-      );
+      // Recalculate total product caunt in the cats
+      cartProductCount(state);
     },
 
     decrementItemQuantity: (state, action: PayloadAction<number>) => {
@@ -71,9 +81,11 @@ export const cartSlice = createSlice({
       if (findProduct) {
         findProduct.count--;
 
-        state.totalPrice = state.products.reduce((sum, obj) => {
-          return obj.price * obj.count + sum;
-        }, 0);
+        // Recalculate the price in the cart
+        cartTotalPriceCount(state);
+
+        // Recalculate total product caunt in the cats
+        cartProductCount(state);
       }
     },
 
@@ -82,16 +94,11 @@ export const cartSlice = createSlice({
         (obj) => obj.id !== action.payload
       );
 
-      // Calculate total product caunt in the cats
-      state.productsCount = state.products.reduce(
-        (sum, product) => sum + product.count,
-        0
-      );
+      // Recalculate the price in the cart
+      cartTotalPriceCount(state);
 
-      // Calculate price of cart
-      state.totalPrice = state.products.reduce((sum, obj) => {
-        return obj.price * obj.count + sum;
-      }, 0);
+      // Recalculate total product caunt in the cats
+      cartProductCount(state);
     },
 
     clearCart: (state) => {
