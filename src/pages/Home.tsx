@@ -1,14 +1,13 @@
 import qs from "qs";
-import { useContext, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { SearchContext } from "../App";
 import Categories, { categoryList } from "../components/Categories";
 import Pagination from "../components/Pagination";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
-import Sort from "../components/Sort";
+import { Sort } from "../components/Sort";
 import { sortOptions } from "../components/Sort";
 import {
   selectFilterCategory,
@@ -24,6 +23,7 @@ import {
   setItemsPerPage,
 } from "../redux/slices/productSlice";
 import { fetchProducts } from "../redux/slices/productSlice";
+import { selectSearchValue } from "../redux/slices/searchSlice";
 import { store } from "../redux/store";
 
 const Home: React.FC = () => {
@@ -32,8 +32,8 @@ const Home: React.FC = () => {
   const location = useLocation();
 
   // Use this ref to check url params
-  const initialParams = useRef(false);
-  const isMounted = useRef(false);
+  const initialParams = React.useRef(false);
+  const isMounted = React.useRef(false);
 
   // State for Category
   const categoryId: number = useSelector(selectFilterCategory);
@@ -41,89 +41,89 @@ const Home: React.FC = () => {
   // State for SortBy
   const sortItem = useSelector(selectFilterSortItem);
 
-  const { products, status }: any = useSelector(selectProducts);
+  const { products, status } = useSelector(selectProducts);
 
   const pagination: any = useSelector(selectProductPagination);
 
-  const { searchValue } = useContext(SearchContext);
+  const { searchValue } = useSelector(selectSearchValue);
 
   // Im use these two functions (changeCategory) to reset pagination
   // If (Category) has been changet
-  const changeCategory = (id: number) => {
+  const changeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
     if (categoryId != id) dispatch(setCurrentPage(1));
-  };
+  }, []);
 
   // Only first render, check url params
   // If url has parameters, use them on the first render
-  useEffect(() => {
-    // Check if url params exist in the first render
-    if (location.search) {
-      // Destructuring url params
-      const { category, _sort, _order, _page, _limit } = qs.parse(
-        location.search,
-        {
-          // Use to delete '?' from params
-          ignoreQueryPrefix: true,
-        }
-      ) as unknown as URLParamsType;
+  // useEffect(() => {
+  //   // Check if url params exist in the first render
+  //   if (location.search) {
+  //     // Destructuring url params
+  //     const { category, _sort, _order, _page, _limit } = qs.parse(
+  //       location.search,
+  //       {
+  //         // Use to delete '?' from params
+  //         ignoreQueryPrefix: true,
+  //       }
+  //     ) as unknown as URLParamsType;
 
-      // If does not have category put 0
-      const categoryParam = category || 0;
+  //     // If does not have category put 0
+  //     const categoryParam = category || 0;
 
-      // if exist pagination params
-      if (_page) dispatch(setCurrentPage(Number(_page)));
-      if (_limit) dispatch(setItemsPerPage(Number(_limit)));
+  //     // if exist pagination params
+  //     if (_page) dispatch(setCurrentPage(Number(_page)));
+  //     if (_limit) dispatch(setItemsPerPage(Number(_limit)));
 
-      // To find selected sort obj in the sortOptions list
-      const sortItem = sortOptions.find(
-        (obj) => obj.property == _sort && obj.orderBy == _order
-      );
+  //     // To find selected sort obj in the sortOptions list
+  //     const sortItem = sortOptions.find(
+  //       (obj) => obj.property == _sort && obj.orderBy == _order
+  //     );
 
-      // If success find param in params list
-      dispatch(
-        setFilters({
-          category: categoryParam,
-          // If sortItem == undefined put first item from sortOptions list
-          sortItem: sortItem || sortOptions[0],
-        })
-      );
+  //     // If success find param in params list
+  //     dispatch(
+  //       setFilters({
+  //         category: categoryParam,
+  //         // If sortItem == undefined put first item from sortOptions list
+  //         sortItem: sortItem || sortOptions[0],
+  //       })
+  //     );
 
-      initialParams.current = true;
-    }
-  }, []);
+  //     initialParams.current = true;
+  //   }
+  // }, []);
 
   // First render, i need to check
-  useEffect(() => {
-    if (isMounted.current) {
-      const params: URLParamsType = {
-        // if category 'All products' is selected, i dont need param 'category' in params
-        ...(categoryId && { category: categoryId }),
-        _sort: sortItem.property,
-        _order: sortItem.orderBy,
-        ...(pagination.itemsPerPage != "all" && {
-          _page: pagination.currentPage,
-        }),
-        // _limit has static number, thus i limit number of items per page
-        ...(pagination.itemsPerPage != "all" && {
-          _limit: pagination.itemsPerPage,
-        }),
-        ...(searchValue && { title_like: searchValue }),
-      };
+  // useEffect(() => {
+  //   if (isMounted.current) {
+  //     const params: URLParamsType = {
+  //       // if category 'All products' is selected, i dont need param 'category' in params
+  //       ...(categoryId && { category: categoryId }),
+  //       _sort: sortItem.property,
+  //       _order: sortItem.orderBy,
+  //       ...(pagination.itemsPerPage != "all" && {
+  //         _page: pagination.currentPage,
+  //       }),
+  //       // _limit has static number, thus i limit number of items per page
+  //       ...(pagination.itemsPerPage != "all" && {
+  //         _limit: pagination.itemsPerPage,
+  //       }),
+  //       ...(searchValue && { title_like: searchValue }),
+  //     };
 
-      const queryParams = qs.stringify({ ...params }, { addQueryPrefix: true }); //addQueryPrefix add '?' before params
+  //     const queryParams = qs.stringify({ ...params }, { addQueryPrefix: true }); //addQueryPrefix add '?' before params
 
-      navigate(queryParams);
-    }
+  //     navigate(queryParams);
+  //   }
 
-    isMounted.current = true;
-  }, [
-    categoryId,
-    sortItem,
-    pagination.currentPage,
-    pagination.itemsPerPage,
-    searchValue,
-  ]);
+  //   isMounted.current = true;
+  // }, [
+  //   categoryId,
+  //   sortItem,
+  //   pagination.currentPage,
+  //   pagination.itemsPerPage,
+  //   searchValue,
+  // ]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -179,7 +179,7 @@ const Home: React.FC = () => {
       {/* Categories & Sort */}
       <div className="content__top">
         <Categories categoryId={categoryId} setCategoryId={changeCategory} />
-        <Sort />
+        <Sort sortOption={sortItem} />
       </div>
       <h2 className="content__title">{categoryList[categoryId]}</h2>
       {/* Product List */}

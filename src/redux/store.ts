@@ -5,6 +5,7 @@ import cart from "./slices/cartSlise";
 import filters from "./slices/fitersSlice";
 import loading from "./slices/loadingSlice";
 import product, { fetchProducts } from "./slices/productSlice";
+import search from "./slices/searchSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     loading,
     cart,
     product,
+    search,
   },
 });
 
