@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useWhyDidYouUpdate } from "ahooks";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { setSortItem } from "../redux/slices/fitersSlice";
 import {
@@ -16,18 +17,22 @@ export const sortOptions: SortOption[] = [
   { id: 3, title: "alphabet (z-a)", property: "title", orderBy: "desc" },
 ];
 
-const Sort = () => {
+type SortItem = {
+  sortOption: SortOption;
+};
+
+export const Sort: React.FC<SortItem> = React.memo(({ sortOption }) => {
   const dispatch = useDispatch();
 
-  // State for SortBy
-  const sortItem = useSelector(selectFilterSortItem);
+  useWhyDidYouUpdate("Categories", { sortOption });
 
+  console.log("teste");
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const onClickSortItem = (obj: SortOption) => {
     dispatch(setSortItem(obj));
     setIsVisible(!isVisible);
-    if (sortItem != obj) dispatch(setCurrentPage(1));
+    if (sortOption != obj) dispatch(setCurrentPage(1));
   };
 
   const sortRef = useRef<HTMLDivElement>(null);
@@ -69,7 +74,7 @@ const Sort = () => {
           />
         </svg>
         <b>Sort by:</b>
-        <span onClick={() => setIsVisible(!isVisible)}>{sortItem.title}</span>
+        <span onClick={() => setIsVisible(!isVisible)}>{sortOption.title}</span>
       </div>
       {isVisible && (
         <div className="sort__popup">
@@ -78,7 +83,7 @@ const Sort = () => {
               <li
                 key={index}
                 onClick={() => onClickSortItem(obj)}
-                className={sortItem.id == obj.id ? "active" : ""}
+                className={sortOption.id == obj.id ? "active" : ""}
               >
                 {obj.title}
               </li>
@@ -88,6 +93,4 @@ const Sort = () => {
       )}
     </div>
   );
-};
-
-export default Sort;
+});
