@@ -1,12 +1,8 @@
-import { useWhyDidYouUpdate } from "ahooks";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setSortItem } from "../redux/slices/fitersSlice";
-import {
-  SortOption,
-  selectFilterSortItem,
-} from "../redux/slices/fitersSlice.js";
+import { SortOption } from "../redux/slices/fitersSlice.js";
 import { setCurrentPage } from "../redux/slices/productSlice.js";
 
 // List Sort Options
@@ -24,9 +20,6 @@ type SortItem = {
 export const Sort: React.FC<SortItem> = React.memo(({ sortOption }) => {
   const dispatch = useDispatch();
 
-  useWhyDidYouUpdate("Categories", { sortOption });
-
-  console.log("teste");
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const onClickSortItem = (obj: SortOption) => {
