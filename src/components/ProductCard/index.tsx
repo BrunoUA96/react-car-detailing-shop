@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import ContentLoader from "react-content-loader";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  ProductType,
-  addProduct,
-  selectProductById,
-} from "../../redux/slices/cartSlise";
+import { selectProductById } from "../../redux/cart/selectors";
+import { addProduct } from "../../redux/cart/slice";
+import { CartProductType } from "../../redux/cart/types";
 
 type CarPartProps = {
   id: number;
@@ -43,7 +41,7 @@ const CarPartBlock: React.FC<CarPartProps> = ({
   const [activeSize, setActiveSize] = useState(0);
 
   const addToCart = () => {
-    const product: ProductType = {
+    const product: CartProductType = {
       id,
       title,
       price,

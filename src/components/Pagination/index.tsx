@@ -1,11 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import Select, { StylesConfig } from "react-select";
 
-import {
-  selectProductPagination,
-  setCurrentPage,
-  setItemsPerPage,
-} from "../../redux/slices/productSlice";
+import { selectProductPagination } from "../../redux/products/selectors";
+import { setCurrentPage, setItemsPerPage } from "../../redux/products/slice";
 import styles from "./Pagination.module.scss";
 
 type PaginationProps = {

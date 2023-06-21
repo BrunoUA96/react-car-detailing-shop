@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 import CartEmty from "../components/Cart/CartEmty";
 import ProductCart from "../components/Cart/ProductCart";
-import { clearCart, selectCart } from "../redux/slices/cartSlise";
+import { selectCart } from "../redux/cart/selectors";
+import { clearCart } from "../redux/cart/slice";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();

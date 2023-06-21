@@ -1,70 +1,12 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { RootState } from "../store";
-
-type ProductType = {
-  id: number;
-  title: string;
-  price: number;
-  imageProguct: string;
-  quantity: string;
-  size: string;
-};
-
-type PaginationType = {
-  currentPage: number;
-  paginationCount: number;
-  itemsPerPage: number;
-};
-
-export enum Status {
-  LOADING = "loading",
-  SUCCESS = "success",
-  ERROR = "error",
-}
-
-type StatusType = Status;
-
-interface ProductSliceInterface {
-  products: ProductType[];
-  status: StatusType;
-  pagination: PaginationType;
-}
-
-type AxiosRespounse = {
-  products: ProductType[];
-  quantity: number;
-};
-
-export type URLParamsType = {
-  category?: number;
-  _sort: string;
-  _order: string;
-  _page?: number;
-  _limit?: number;
-  title_like?: string;
-};
-
-export const fetchProducts = createAsyncThunk<AxiosRespounse, URLParamsType>(
-  "product/fetchProductsStatus",
-  async (params: URLParamsType) => {
-    const baseAPI = "http://localhost:3000/products";
-    const [products, productQuantity] = await axios.all([
-      // First get to items per page
-      await axios.get(baseAPI, { params: { ...params } }),
-      // Second get return all items with selected caregory, to calculate quantity pagination pages
-      await axios.get(baseAPI, {
-        params: { category: params.category, title_like: params.title_like },
-      }),
-    ]);
-
-    return {
-      products: products.data,
-      quantity: productQuantity.data.length,
-    } as AxiosRespounse;
-  }
-);
+import { fetchProducts } from "./asyncActions";
+import {
+  PaginationType,
+  ProductSliceInterface,
+  ProductType,
+  Status,
+} from "./types";
 
 const initialState = {
   products: [],
@@ -87,7 +29,7 @@ export const productSlice = createSlice({
       state.products = action.payload;
     },
 
-    setStatus: (state, action: PayloadAction<StatusType>) => {
+    setStatus: (state, action: PayloadAction<Status>) => {
       state.status = action.payload;
     },
 
@@ -140,11 +82,6 @@ export const productSlice = createSlice({
     });
   },
 });
-
-export const selectProducts = (state: RootState) => state.product;
-
-export const selectProductPagination = (state: RootState) =>
-  state.product.pagination;
 
 // Action creators are generated for each case reducer function
 export const { setProducts, setStatus, setCurrentPage, setItemsPerPage } =

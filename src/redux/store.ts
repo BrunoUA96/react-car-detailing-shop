@@ -13,10 +13,10 @@ import {
 // defaults to localStorage for web
 import storage from "redux-persist/lib/storage";
 
-import cart from "./slices/cartSlise";
+import cart from "./cart/slice";
+import product from "./products/slice";
 import filters from "./slices/fitersSlice";
 import loading from "./slices/loadingSlice";
-import product, { fetchProducts } from "./slices/productSlice";
 import search from "./slices/searchSlice";
 
 const rootReducer = combineReducers({

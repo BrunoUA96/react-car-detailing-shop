@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 
 import {
-  ProductType,
   addProduct,
   decrementItemQuantity,
   removeProduct,
-} from "../../../redux/slices/cartSlise";
+} from "../../../redux/cart/slice";
+import { CartProductType } from "../../../redux/cart/types";
 
 // type ProductCartProps = {
 //   id: number;
@@ -17,7 +17,7 @@ import {
 //   count: number;
 // };
 
-const ProductCart: React.FC<ProductType> = ({
+const ProductCart: React.FC<CartProductType> = ({
   id,
   title,
   imageProguct,
@@ -29,7 +29,7 @@ const ProductCart: React.FC<ProductType> = ({
   const dispatch = useDispatch();
 
   const onIncrementQuantity = () => {
-    dispatch(addProduct({ id } as ProductType));
+    dispatch(addProduct({ id } as CartProductType));
   };
 
   const onDecrementQuantity = () => {

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
-import { selectCart } from "../redux/slices/cartSlise";
+import { selectCart } from "../redux/cart/selectors";
 import Search from "./Search";
 
 const Header: React.FC = () => {

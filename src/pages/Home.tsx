@@ -9,20 +9,19 @@ import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import { Sort } from "../components/Sort";
 import { sortOptions } from "../components/Sort";
+import { fetchProducts } from "../redux/products/asyncActions";
+import {
+  selectProductPagination,
+  selectProducts,
+} from "../redux/products/selectors";
+import { setCurrentPage } from "../redux/products/slice";
+import { URLParamsType } from "../redux/products/types";
 import {
   selectFilterCategory,
   selectFilterSortItem,
   setCategoryId,
   setFilters,
 } from "../redux/slices/fitersSlice";
-import {
-  URLParamsType,
-  selectProductPagination,
-  selectProducts,
-  setCurrentPage,
-  setItemsPerPage,
-} from "../redux/slices/productSlice";
-import { fetchProducts } from "../redux/slices/productSlice";
 import { selectSearchValue } from "../redux/slices/searchSlice";
 import { store } from "../redux/store";
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
+import { setCurrentPage } from "../redux/products/slice.js";
 import { setSortItem } from "../redux/slices/fitersSlice";
 import { SortOption } from "../redux/slices/fitersSlice.js";
-import { setCurrentPage } from "../redux/slices/productSlice.js";
 
 // List Sort Options
 export const sortOptions: SortOption[] = [

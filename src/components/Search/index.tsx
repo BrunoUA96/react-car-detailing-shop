@@ -2,8 +2,8 @@ import debounce from "lodash.debounce";
 import React, { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { Status, setStatus } from "../../redux/slices/productSlice";
-import { setCurrentPage } from "../../redux/slices/productSlice";
+import { setCurrentPage, setStatus } from "../../redux/products/slice";
+import { Status } from "../../redux/products/types";
 import { setSearchValue } from "../../redux/slices/searchSlice";
 import styles from "./Search.module.scss";
 
