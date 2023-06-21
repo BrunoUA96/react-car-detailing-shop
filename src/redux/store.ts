@@ -14,10 +14,10 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import cart from "./cart/slice";
+import filters from "./filters/slice";
+import loading from "./loading/slice";
 import product from "./products/slice";
-import filters from "./slices/fitersSlice";
-import loading from "./slices/loadingSlice";
-import search from "./slices/searchSlice";
+import search from "./search/slice";
 
 const rootReducer = combineReducers({
   filters,

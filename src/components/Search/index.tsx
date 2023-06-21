@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { setCurrentPage, setStatus } from "../../redux/products/slice";
 import { Status } from "../../redux/products/types";
-import { setSearchValue } from "../../redux/slices/searchSlice";
+import { setSearchValue } from "../../redux/search/slice";
 import styles from "./Search.module.scss";
 
 const Search: React.FC = () => {

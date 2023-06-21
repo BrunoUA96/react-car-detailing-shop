@@ -1,18 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { RootState } from "../store";
-
-export type SortOption = {
-  id: number;
-  title: string;
-  property: string;
-  orderBy: string;
-};
-
-interface FilterSliceInterface {
-  category: number;
-  sortItem: SortOption;
-}
+import { FilterSliceInterface, SortOption } from "./types";
 
 const initialState: FilterSliceInterface = {
   category: 0,
@@ -39,12 +27,6 @@ export const filterSlice = createSlice({
     },
   },
 });
-
-export const selectFilterCategory = (state: RootState) =>
-  state.filters.category;
-
-export const selectFilterSortItem = (state: RootState) =>
-  state.filters.sortItem;
 
 // Action creators are generated for each case reducer function
 export const { setCategoryId, setSortItem, setFilters } = filterSlice.actions;

@@ -9,6 +9,11 @@ import ProductCard from "../components/ProductCard";
 import Skeleton from "../components/ProductCard/Skeleton";
 import { Sort } from "../components/Sort";
 import { sortOptions } from "../components/Sort";
+import {
+  selectFilterCategory,
+  selectFilterSortItem,
+} from "../redux/filters/selectors";
+import { setCategoryId } from "../redux/filters/slice";
 import { fetchProducts } from "../redux/products/asyncActions";
 import {
   selectProductPagination,
@@ -16,13 +21,7 @@ import {
 } from "../redux/products/selectors";
 import { setCurrentPage } from "../redux/products/slice";
 import { URLParamsType } from "../redux/products/types";
-import {
-  selectFilterCategory,
-  selectFilterSortItem,
-  setCategoryId,
-  setFilters,
-} from "../redux/slices/fitersSlice";
-import { selectSearchValue } from "../redux/slices/searchSlice";
+import { selectSearchValue } from "../redux/search/selectors";
 import { store } from "../redux/store";
 
 const Home: React.FC = () => {
