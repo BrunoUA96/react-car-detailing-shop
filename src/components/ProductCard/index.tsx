@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { selectProductById } from "../../redux/cart/selectors";
 import { addProduct } from "../../redux/cart/slice";
-import { CartProductType } from "../../redux/cart/types";
+import { ItemCardType } from "../../redux/cart/types";
 
 type CarPartProps = {
   id: number;
@@ -12,7 +12,6 @@ type CarPartProps = {
   price: number;
   subCategory: string;
   imageProguct: string;
-  quantity: string[];
   size: string[];
 };
 
@@ -22,7 +21,6 @@ const CarPartBlock: React.FC<CarPartProps> = ({
   price,
   subCategory,
   imageProguct,
-  quantity,
   size,
 }) => {
   const dispatch = useDispatch();
@@ -37,16 +35,15 @@ const CarPartBlock: React.FC<CarPartProps> = ({
   // Else put number of added
   const addedCount = addedProduct ? addedProduct.count : 0;
 
-  const [activeQuantity, setActiveQuantity] = useState(0);
+  // const [activeQuantity, setActiveQuantity] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
   const addToCart = () => {
-    const product: CartProductType = {
+    const product: ItemCardType = {
       id,
       title,
       price,
       imageProguct,
-      quantity: quantity[activeQuantity],
       size: size[activeSize],
       count: 0,
     };
@@ -81,23 +78,10 @@ const CarPartBlock: React.FC<CarPartProps> = ({
 
       <h4 className="car-parts-block__title">{title}</h4>
       <span className="car-parts-block__subtitle">{subCategory}</span>
-      {(quantity.length > 0 || size.length > 0) && (
+      {size && (
         <div className="car-parts-block__selector">
-          {quantity.length > 0 && (
-            <ul style={size.length == 0 ? { marginBottom: 0 } : {}}>
-              {quantity.map((value, index) => (
-                <li
-                  key={index + value}
-                  onClick={() => setActiveQuantity(index)}
-                  className={activeQuantity == index ? "active" : ""}
-                >
-                  {value}
-                </li>
-              ))}
-            </ul>
-          )}
           {size.length > 0 && (
-            <ul style={quantity.length == 0 ? { marginBottom: 0 } : {}}>
+            <ul style={{ marginBottom: 0 }}>
               {size.map((value, index) => (
                 <li
                   key={index + value}

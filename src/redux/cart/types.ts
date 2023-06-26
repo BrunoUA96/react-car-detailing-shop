@@ -1,10 +1,21 @@
+export type ItemCardType = {
+  id: number;
+  title: string;
+  price: number;
+  imageProguct: string;
+  size: string;
+  count: number;
+};
+
 export type CartProductType = {
   id: number;
   title: string;
   price: number;
   imageProguct: string;
-  quantity: string;
-  size: string;
+  size: {
+    value: string;
+    sizeCount: number;
+  }[];
   count: number;
 };
 

@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { cartProductCount, cartTotalPriceCount } from "./actions";
-import { CartProductType, CartSliceInterface } from "./types";
+import { CartSliceInterface, ItemCardType } from "./types";
 
 const initialState: CartSliceInterface = {
   products: [],
@@ -17,20 +17,40 @@ export const cartSlice = createSlice({
     // Add product to cart
     //&
     // Increment the count of the added product
-    addProduct: (state, action: PayloadAction<CartProductType>) => {
+    addProduct: (state, action: PayloadAction<ItemCardType>) => {
       // Find product in my products state list
       const findProduct = state.products.find(
         (obj) => obj.id === action.payload.id
       );
 
-      // If product exist in products state list
-      // im only add count
       if (findProduct) {
+        const { size } = findProduct;
+
+        const checkSize = size.find(
+          (sizeObj) => sizeObj.value == action.payload.size
+        );
+
+        if (checkSize) {
+          checkSize.sizeCount++;
+        } else {
+          findProduct.size.push({
+            value: action.payload.size,
+            sizeCount: 1,
+          });
+        }
+
+        // If product exist in products state list
+        // im only add count
         findProduct.count++;
       } else {
         // If product doesn't exist, add new product
+        const { size } = action.payload;
+
+        const sizeProp = [{ value: size, sizeCount: 1 }];
+
         state.products.push({
           ...action.payload,
+          size: sizeProp,
           count: 1,
         });
       }
@@ -38,17 +58,27 @@ export const cartSlice = createSlice({
       // Recalculate the price in the cart
       cartTotalPriceCount(state);
 
-      // Recalculate total product caunt in the cats
+      // Recalculate total product caunt in the cart
       cartProductCount(state);
     },
 
-    decrementItemQuantity: (state, action: PayloadAction<number>) => {
+    decrementItemQuantity: (state, action: PayloadAction<ItemCardType>) => {
       // Find product in my products state list
       const findProduct = state.products.find(
-        (obj) => obj.id === action.payload
+        (obj) => obj.id === action.payload.id
       );
 
       if (findProduct) {
+        const { size } = findProduct;
+
+        const checkSize = size.find(
+          (sizeObj) => sizeObj.value == action.payload.size
+        );
+
+        if (checkSize) {
+          checkSize.sizeCount--;
+        }
+
         findProduct.count--;
 
         // Recalculate the price in the cart

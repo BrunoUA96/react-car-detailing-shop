@@ -7,7 +7,7 @@ export const cartTotalPriceCount = (state: CartSliceInterface) => {
   }, 0));
 };
 
-// Calculate total product caunt in the cats
+// Calculate total product caunt in the cart
 export const cartProductCount = (state: CartSliceInterface) => {
   return (state.productsCount = state.products.reduce(
     (sum, product) => sum + product.count,
