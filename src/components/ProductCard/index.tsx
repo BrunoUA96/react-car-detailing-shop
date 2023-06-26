@@ -33,7 +33,8 @@ const CarPartBlock: React.FC<CarPartProps> = ({
   const addedProduct = useSelector(selectProductById(id));
   // If product doesn't exist in redux put count 0
   // Else put number of added
-  const addedCount = addedProduct ? addedProduct.count : 0;
+  const totlaAddedCount = addedProduct ? addedProduct.count : 0;
+  const addedPerSize = addedProduct ? addedProduct.size : null;
 
   // const [activeQuantity, setActiveQuantity] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
@@ -88,6 +89,18 @@ const CarPartBlock: React.FC<CarPartProps> = ({
                   onClick={() => setActiveSize(index)}
                   className={activeSize == index ? "active" : ""}
                 >
+                  {addedPerSize?.map(
+                    (item) =>
+                      value == item.value && (
+                        <span
+                          className="car-parts-block__selector--count-mark"
+                          key={title + item.value}
+                        >
+                          {item.sizeCount}
+                        </span>
+                      )
+                  )}
+
                   {value.toUpperCase()}
                 </li>
               ))}
@@ -114,7 +127,7 @@ const CarPartBlock: React.FC<CarPartProps> = ({
             />
           </svg>
           <span>Add</span>
-          {addedCount > 0 && <i>{addedCount}</i>}
+          {totlaAddedCount > 0 && <i>{totlaAddedCount}</i>}
         </button>
       </div>
     </div>
