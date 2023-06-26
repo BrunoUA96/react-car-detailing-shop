@@ -26,13 +26,16 @@ export const cartSlice = createSlice({
       if (findProduct) {
         const { size } = findProduct;
 
+        // Look if comming size from action ready exist
         const checkSize = size.find(
           (sizeObj) => sizeObj.value == action.payload.size
         );
 
+        // If exist, add count
         if (checkSize) {
           checkSize.sizeCount++;
         } else {
+          // else add size to Product
           findProduct.size.push({
             value: action.payload.size,
             sizeCount: 1,
@@ -46,8 +49,11 @@ export const cartSlice = createSlice({
         // If product doesn't exist, add new product
         const { size } = action.payload;
 
+        // From action come only name of size
+        // I need add size count to control stock of quantities added
         const sizeProp = [{ value: size, sizeCount: 1 }];
 
+        // Push new product to the state list
         state.products.push({
           ...action.payload,
           size: sizeProp,
@@ -71,14 +77,17 @@ export const cartSlice = createSlice({
       if (findProduct) {
         const { size } = findProduct;
 
+        // Look if comming size from action ready exist
         const checkSize = size.find(
           (sizeObj) => sizeObj.value == action.payload.size
         );
 
+        // Decrement count of sizes
         if (checkSize) {
           checkSize.sizeCount--;
         }
 
+        // Decrement product count
         findProduct.count--;
 
         // Recalculate the price in the cart
