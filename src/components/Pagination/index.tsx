@@ -49,10 +49,10 @@ const Pagination = () => {
       return {
         ...styles,
         backgroundColor: "white",
-        ...(isFocused && { borderColor: "#fe5f1e" }),
-        ...(isFocused && { boxShadow: " 0 0 0 1 #fe5f1e" }),
+        ...(isFocused && { borderColor: "#009688" }),
+        ...(isFocused && { boxShadow: " 0 0 0 1 #009688" }),
         ":hover": {
-          borderColor: "#fe5f1e",
+          borderColor: "#009688",
         },
       };
     },
@@ -61,14 +61,14 @@ const Pagination = () => {
       return {
         ...styles,
         backgroundColor: isSelected
-          ? "#fe5f1e"
+          ? "#009688"
           : isFocused
-          ? "#fe5f1e82"
+          ? "#00968882"
           : "white",
-        color: isSelected ? "white" : isFocused ? "white" : "#fe5f1e",
+        color: isSelected ? "white" : isFocused ? "white" : "#009688",
         cursor: isFocused ? "pointer" : "default",
         ":active": {
-          backgroundColor: isFocused ? "#fe5f1e" : "white",
+          backgroundColor: isFocused ? "#009688" : "white",
         },
       };
     },

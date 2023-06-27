@@ -80,17 +80,17 @@
         }
 
         &.active {
-          background-color: $orange;
+          background-color: $green;
           color: #fff;
           font-weight: 600;
           font-size: 16px;
 
           &:hover {
-            background-color: darken($orange, 8%);
+            background-color: darken($green, 8%);
           }
 
           &:active {
-            background-color: darken($orange, 12%);
+            background-color: darken($green, 12%);
             transform: translateY(1px);
           }
 
