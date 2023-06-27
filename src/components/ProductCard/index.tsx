@@ -19,7 +19,6 @@ const CarPartBlock: React.FC<CarPartProps> = ({
   id,
   title,
   price,
-  subCategory,
   imageProguct,
   size,
 }) => {
