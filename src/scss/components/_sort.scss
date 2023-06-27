@@ -1,58 +1,63 @@
-@import '../variables';
+@import "../variables";
 
 .sort {
-   position: relative;
+  position: relative;
+  min-width: 170px;
 
-   @media screen and (max-width: 1260px) {
-      margin-bottom: 30px;
-   }
+  @media screen and (max-width: 1260px) {
+    margin-bottom: 30px;
+  }
 
-   &__label {
-      display: flex;
-      align-items: center;
+  &__label {
+    display: flex;
+    align-items: center;
 
-      svg {
-         margin-right: 8px;
-      }
+    @media screen and (max-width: 550px) {
+      font-size: 14px;
+    }
 
-      b {
-         margin-right: 8px;
-      }
+    svg {
+      margin-right: 8px;
+    }
 
-      span {
-         color: $orange;
-         border-bottom: 1px dashed $orange;
-         cursor: pointer;
-      }
-   }
+    b {
+      margin-right: 8px;
+    }
 
-   &__popup {
-      position: absolute;
-      right: 0;
-      margin-top: 15px;
-      background: #ffffff;
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
-      border-radius: 10px;
+    span {
+      color: $orange;
+      border-bottom: 1px dashed $orange;
+      cursor: pointer;
+    }
+  }
+
+  &__popup {
+    position: absolute;
+    right: 0;
+    margin-top: 15px;
+    background: #ffffff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px 0;
+    width: 160px;
+
+    ul {
       overflow: hidden;
-      padding: 10px 0;
-      width: 160px;
+      li {
+        padding: 12px 20px;
+        cursor: pointer;
 
-      ul {
-         overflow: hidden;
-         li {
-            padding: 12px 20px;
-            cursor: pointer;
+        &.active,
+        &:hover {
+          background: rgba(254, 95, 30, 0.05);
+        }
 
-            &.active,
-            &:hover {
-               background: rgba(254, 95, 30, 0.05);
-            }
-
-            &.active {
-               font-weight: bold;
-               color: $orange;
-            }
-         }
+        &.active {
+          font-weight: bold;
+          color: $orange;
+        }
       }
-   }
+    }
+  }
 }

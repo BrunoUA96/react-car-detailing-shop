@@ -80,6 +80,7 @@ const Pagination = () => {
         <div className={styles.select}>
           <span className={styles.selectTitle}>Items per page:</span>
           <Select
+            isSearchable={false}
             menuPlacement="top"
             options={options}
             defaultValue={options.find((obj) => obj.value == itemsPerPage)}

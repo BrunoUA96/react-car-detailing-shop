@@ -28,6 +28,7 @@ const Categories: React.FC<CategoryProps> = React.memo(
             </li>
           ))}
         </ul>
+        <div className="categories--scroll-arrow"></div>
       </div>
     );
   }

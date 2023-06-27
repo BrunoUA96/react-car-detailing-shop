@@ -1,46 +1,69 @@
 .root {
-   position: relative;
+  position: relative;
 
-   .input {
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      padding: 12px 39px 12px 42px;
-      width: 400px;
-      border-radius: 10px;
-      font-size: 16px;
-      transition: all 0.15s ease-in-out;
+  @media screen and (max-width: 992px) {
+    order: 3;
+    margin-top: 20px;
+    width: 100%;
+  }
 
-      &:focus {
-         border-color: rgba(0, 0, 0, 0.3);
+  .input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 39px 12px 42px;
+    width: 400px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.15s ease-in-out;
+
+    @media screen and (max-width: 992px) {
+      width: 100%;
+
+      &::placeholder {
+        font-size: 13px;
       }
-   }
+    }
 
-   .searchIcon {
-      width: 22px;
-      height: 22px;
-      opacity: 0.3;
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-   }
+    @media screen and (max-width: 560px) {
+      padding: 7px 39px 7px 36px;
+    }
 
-   .closeIcon {
-      fill: none;
-      stroke: #000;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-width: 2px;
-      opacity: 0.3;
-      width: 25px;
-      height: 25px;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
+    &:focus {
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+  }
 
-      &:hover {
-         opacity: 0.5;
-      }
-   }
+  .searchIcon {
+    width: 22px;
+    height: 22px;
+    opacity: 0.3;
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @media screen and (max-width: 560px) {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .closeIcon {
+    fill: none;
+    stroke: #000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+    opacity: 0.3;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 }

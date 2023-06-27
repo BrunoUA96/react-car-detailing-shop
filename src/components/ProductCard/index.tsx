@@ -78,7 +78,6 @@ const CarPartBlock: React.FC<CarPartProps> = ({
       />
 
       <h4 className="car-parts-block__title">{title}</h4>
-      <span className="car-parts-block__subtitle">{subCategory}</span>
       {size && (
         <div className="car-parts-block__selector">
           {size.length > 0 && (

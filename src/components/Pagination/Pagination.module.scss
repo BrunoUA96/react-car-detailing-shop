@@ -1,87 +1,110 @@
-@import '../../scss/variables';
+@import "../../scss/variables";
 .root {
-   width: 100%;
-   min-height: 100px;
-   display: flex;
-   align-items: flex-end;
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  align-items: flex-end;
 
-   .paginationContent {
-      width: 100%;
-      position: relative;
+  .paginationContent {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
 
-      .selectTitle {
-         position: absolute;
-         top: -30px;
-         display: flex;
-         width: 115px;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .selectTitle {
+      // position: absolute;
+      // top: -30px;
+      // display: flex;
+      // width: 115px;
+    }
+
+    .select {
+      display: inline-flex;
+      /* align-items: center; */
+      /* position: absolute; */
+      /* top: 50%; */
+      /* left: 0; */
+      /* transform: translateY(-50%); */
+      flex-direction: column;
+
+      @media screen and (max-width: 768px) {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+
+      @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
       }
 
-      .select {
-         display: flex;
-         align-items: center;
-         position: absolute;
-         top: 50%;
-         left: 0;
-         transform: translateY(-50%);
+      :first-child,
+      :last-child {
+        padding: 5px;
       }
 
-      .pagination {
-         display: flex;
-         justify-content: center;
-         :first-child,
-         :last-child {
-            padding: 5px;
-         }
+      li {
+        background-color: #f9f9f9;
+        margin: 0 5px;
+        padding: 5px 13px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-         li {
-            background-color: #f9f9f9;
-            margin: 0 5px;
-            padding: 5px 13px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 5px;
+        }
 
-            &.cursorNone {
-               cursor: no-drop;
+        &.cursorNone {
+          cursor: no-drop;
+        }
+
+        span {
+          line-height: 0;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        &.active {
+          background-color: $orange;
+          color: #fff;
+          font-weight: 600;
+          font-size: 16px;
+
+          &:hover {
+            background-color: darken($orange, 8%);
+          }
+
+          &:active {
+            background-color: darken($orange, 12%);
+            transform: translateY(1px);
+          }
+
+          span {
+            color: inherit;
+
+            svg {
+              g {
+                fill: white;
+              }
             }
-
-            span {
-               line-height: 0;
-
-               svg {
-                  width: 20px;
-                  height: 20px;
-               }
-            }
-
-            &.active {
-               background-color: $orange;
-               color: #fff;
-               font-weight: 600;
-               font-size: 16px;
-
-               &:hover {
-                  background-color: darken($orange, 8%);
-               }
-
-               &:active {
-                  background-color: darken($orange, 12%);
-                  transform: translateY(1px);
-               }
-
-               span {
-                  color: inherit;
-
-                  svg {
-                     g {
-                        fill: white;
-                     }
-                  }
-               }
-            }
-         }
+          }
+        }
       }
-   }
+    }
+  }
 }
