@@ -6,7 +6,7 @@ import { AxiosRespounse, URLParamsType } from "./types";
 export const fetchProducts = createAsyncThunk<AxiosRespounse, URLParamsType>(
   "product/fetchProductsStatus",
   async (params: URLParamsType) => {
-    const baseAPI = "http://localhost:8000/products";
+    const baseAPI = "https://api-react-car-detailing-shop.vercel.app/products";
     const [products, productQuantity] = await axios.all([
       // First get to items per page
       await axios.get(baseAPI, { params: { ...params } }),
