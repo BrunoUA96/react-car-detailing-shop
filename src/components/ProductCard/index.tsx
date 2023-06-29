@@ -87,17 +87,20 @@ const CarPartBlock: React.FC<CarPartProps> = ({
                   onClick={() => setActiveSize(index)}
                   className={activeSize == index ? "active" : ""}
                 >
-                  {addedPerSize?.map(
-                    (item) =>
-                      value == item.value && (
-                        <span
-                          className="car-parts-block__selector--count-mark"
-                          key={title + item.value}
-                        >
-                          {item.sizeCount}
-                        </span>
-                      )
-                  )}
+                  {/* If only one size option, dont need to show size count */}
+                  {/* Because "Add" button shows */}
+                  {size.length > 1 &&
+                    addedPerSize?.map(
+                      (item) =>
+                        value == item.value && (
+                          <span
+                            className="car-parts-block__selector--count-mark"
+                            key={title + item.value}
+                          >
+                            {item.sizeCount}
+                          </span>
+                        )
+                    )}
 
                   {value.toUpperCase()}
                 </li>
