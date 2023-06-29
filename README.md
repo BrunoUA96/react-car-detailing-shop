@@ -23,8 +23,7 @@ And tried to create my first react experience. Name is -  React Shop Car detaili
 - Code Splitting, React Loadable, useWhyDidYouUpdate
 - <a href="https://github.com/typicode/json-server">Json-Server</a> to fetch my Products
 
-## 🖼️ About some interestings components
+<!-- ## 🖼️ About some interestings components
 
-##### Custom pagination
-
-- 
+##### Custom pagination & items per page select
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/pagination-view.png" alt="my banner"> -->
