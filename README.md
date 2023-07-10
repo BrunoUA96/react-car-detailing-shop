@@ -32,8 +32,8 @@ And tried to create my first react experience. Name is -  React Shop Car detaili
 <img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/principal-view-error.png">
 
 #### Product card view
-###### Count the number of added options if the product has more than one
-<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/card-item-view.png">
+###### Count the number of added options if the product has more than one and show the total number added
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/card-item-view.png">
 
 ##### Pagination
 ###### I implemented my pagination
