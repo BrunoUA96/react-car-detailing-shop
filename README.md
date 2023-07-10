@@ -2,8 +2,7 @@
 Hi there, this is my first React Progect  👋
 </h3>
 
-I was inspired by this blogger <a href="https://www.youtube.com/@ArchakovBlog">@ArchakovBlog</a>. Who developed the project using React. 
-And tried to create my first react experience. Name is -  React Shop Car detailing products.
+Create my first react experience. Name is -  React Shop Car detailing products 🤗
 
 ## 🖼️ Preview
 <img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/principal-view.png">
