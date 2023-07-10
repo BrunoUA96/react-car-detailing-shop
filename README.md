@@ -3,7 +3,10 @@ Hi there, this is my first React Progect  👋
 </h3>
 
 I was inspired by this blogger <a href="https://www.youtube.com/@ArchakovBlog">@ArchakovBlog</a>. Who developed the project using React. 
-And tried to create my first react experience. Name is -  React Shop Car detailing products
+And tried to create my first react experience. Name is -  React Shop Car detailing products.
+
+## 🖼️ Preview
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/principal-view.png">
 
 ## 🛠 Technologies that I used
 
@@ -23,7 +26,26 @@ And tried to create my first react experience. Name is -  React Shop Car detaili
 - Code Splitting, React Loadable, useWhyDidYouUpdate
 - <a href="https://github.com/typicode/json-server">Json-Server</a> to fetch my Products
 
-<!-- ## 🖼️ About some interestings components
+## 🖼️ About some interestings components
 
-##### Custom pagination & items per page select
-<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/pagination-view.png" alt="my banner"> -->
+#### Fetch products check
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/principal-view-error.png">
+
+#### Product card view
+###### Count the number of added options if the product has more than one
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/card-item-view.png">
+
+##### Pagination
+###### I implemented my pagination
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/pagination-view.png">
+
+###### The ability to choose the number of items per page
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/items-per-page-opened.png">
+
+#### Cart
+
+###### Empty cart show this
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/cart-empty.png">
+
+###### Cart product list
+<img src="https://raw.githubusercontent.com/BrunoUA96/react-car-detailing-shop/main/image-preview/cart-item-view.png">
